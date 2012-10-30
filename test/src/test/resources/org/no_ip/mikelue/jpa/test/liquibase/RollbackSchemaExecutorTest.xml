@@ -1,0 +1,31 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="test">
+        <createTable tableName="tt_user">
+            <column name="us_id" type="int" />
+            <column name="us_name" type="varchar(128)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="test" context="c1">
+        <createTable tableName="tt_product">
+            <column name="pd_id" type="int" />
+            <column name="pd_name" type="varchar(128)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="test" context="c1">
+        <tagDatabase tag="1.1"/>
+    </changeSet>
+
+    <changeSet id="4" author="test" context="c2">
+        <createTable tableName="tt_item">
+            <column name="it_id" type="int" />
+            <column name="it_name" type="varchar(128)" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

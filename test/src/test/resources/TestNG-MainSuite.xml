@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="MainSuite">
+    <test name="SingleThread" >
+        <groups>
+            <run>
+                <exclude name="MultiThread" />
+            </run>
+        </groups>
+        <packages>
+            <package name="org.no_ip.mikelue.jpa.test.*" />
+        </packages>
+    </test>
+    <test name="MultiThread" parallel="true" thread-count="2">
+        <classes>
+            <class name="org.no_ip.mikelue.jpa.test.testng.MultiThreadMethodActionListenerTest" />
+        </classes>
+    </test>
+</suite>

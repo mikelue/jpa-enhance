@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+
+    <persistence-unit name="app-managed" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>org.no_ip.mikelue.jpa.model.Person</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="${database.test.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${database.test.url}" />
+            <property name="javax.persistence.jdbc.user" value="${database.test.user}" />
+            <property name="javax.persistence.jdbc.password" value="${database.test.password}" />
+
+            <!-- Hibernate Core Settings -->
+            <property name="hibernate.dialect" value="${database.test.hibernate.dialect}" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.archive.autodetection" value="" />
+            <property name="hibernate.id.new_generator_mappings" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <!-- :~) -->
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="container-managed" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>org.no_ip.mikelue.jpa.model.Car</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="${database.test.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${database.test.url}" />
+            <property name="javax.persistence.jdbc.user" value="${database.test.user}" />
+            <property name="javax.persistence.jdbc.password" value="${database.test.password}" />
+
+            <!-- Hibernate Core Settings -->
+            <property name="hibernate.dialect" value="${database.test.hibernate.dialect}" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.archive.autodetection" value="" />
+            <property name="hibernate.id.new_generator_mappings" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <!-- :~) -->
+        </properties>
+    </persistence-unit>
+</persistence>

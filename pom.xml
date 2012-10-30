@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.no-ip.mikelue.jpa</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>
+        <module>test</module>
+    </modules>
+
+    <properties>
+        <!-- Versions could be used from sub modules -->
+        <version.aspectj>1.6.12</version.aspectj>
+        <version.cglib>2.2.2</version.cglib>
+        <version.commons.lang>2.6</version.commons.lang>
+        <version.hibernate>4.1.7.Final</version.hibernate>
+        <version.hsqldb>2.2.4</version.hsqldb>
+        <version.javax.inject>1</version.javax.inject>
+        <version.jmockit>0.999.18</version.jmockit>
+        <version.liquibase>2.0.5</version.liquibase>
+        <version.logback>1.0.7</version.logback>
+        <version.slf4j>1.7.2</version.slf4j>
+        <version.springframework>3.1.2.RELEASE</version.springframework>
+        <version.testng>6.8</version.testng>
+        <!-- :~) -->
+
+        <!-- Links for Javadoc -->
+        <javadoc.link.java6>http://download.oracle.com/javase/6/docs/api/</javadoc.link.java6>
+        <javadoc.link.javaee6>http://download.oracle.com/javaee/6/api/</javadoc.link.javaee6>
+        <javadoc.link.slf4j>http://www.slf4j.org/apidocs/</javadoc.link.slf4j>
+        <javadoc.link.springframework>http://static.springsource.org/spring/docs/3.0.x/javadoc-api/</javadoc.link.springframework>
+        <!-- :~) -->
+
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+    </properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--
+			  - JPA dependencies
+			  -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${version.hibernate}</version>
+			</dependency>
+			<!-- :~) -->
+
+			<!--
+			  - Spring framework
+			  -->
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>${version.javax.inject}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${version.springframework}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${version.springframework}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${version.aspectj}</version>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${version.cglib}</version>
+			</dependency>
+			<!-- :~) -->
+
+			<!--
+			  - Utilities
+			  -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons.lang}</version>
+			</dependency>
+			<!-- :~) -->
+
+			<!--
+			  - Logging framework
+			  -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${version.logback}</version>
+			</dependency>
+			<!-- :~) -->
+
+			<!--
+			  - Dependencies for testing
+			  -->
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb-j5</artifactId>
+				<version>${version.hsqldb}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${version.testng}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${version.jmockit}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${version.springframework}</version>
+			</dependency>
+			<!-- :~) -->
+		</dependencies>
+	</dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.12.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.9</version>
+                    <configuration>
+                        <links>
+                            <link>${javadoc.link.java6}</link>
+                            <link>${javadoc.link.javaee6}</link>
+                            <link>${javadoc.link.slf4j}</link>
+                            <link>${javadoc.link.springframework}</link>
+                        </links>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+	<scm>
+		<connection>scm:git:git@github.com:mikelue/jpa-enhance.git</connection>
+		<developerConnection>scm:git:git@github.com:mikelue/jpa-enhance.git</developerConnection>
+		<url>https://github.com/mikelue/jpa-enhance.git</url>
+	</scm>
+</project>

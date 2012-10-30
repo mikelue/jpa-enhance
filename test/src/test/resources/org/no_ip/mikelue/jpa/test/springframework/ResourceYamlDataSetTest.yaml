@@ -1,0 +1,3 @@
+tab_1:
+- { col_1: "name_1", col_2: 10 }
+- { col_1: "name_2", col_2: 20 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<dataset>
+    <table name="tt_user">
+        <column>us_id</column>
+        <column>us_name</column>
+        <row>
+            <value>1</value>
+            <value>King</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Jane</value>
+        </row>
+    </table>
+</dataset>

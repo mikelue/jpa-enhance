@@ -1,0 +1,25 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="test" context="buildSchema,forceReleaseLock">
+        <comment>Schema for testing</comment>
+
+        <createTable tableName="tt_sample_table">
+            <column name="st_id" type="int" />
+            <column name="st_name" type="varchar(128)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="test" context="forceReleaseLock">
+        <comment>This schema throws error while updating to generate unreleased lock</comment>
+
+        <createTable tableName="tt_sample_table">
+            <column name="st_id" type="int" />
+            <column name="st_name" type="varchar(128)" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

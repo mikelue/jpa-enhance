@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Copyright (c) 2011. Blue Tang Studio. All rights reserved.
+  - Date: 2011-08-18
+  -
+  - This test library for JPA depends on TestNG.
+  - The whole library is designd for running test in environment of TestNG.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.no-ip.mikelue.jpa</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>test</artifactId>
+    <name>Testing library for JPA</name>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>
+
+    <properties>
+        <!-- Version definitions -->
+        <version.mikelue.jpa>1.0.0</version.mikelue.jpa>
+        <version.dbunit>2.4.8</version.dbunit>
+        <version.snakeyaml>1.11</version.snakeyaml>
+        <!-- :~) -->
+
+        <!-- Test environment for database -->
+        <!-- ================================================== -->
+        <database.hsqldb.url>jdbc:hsqldb:file:target/hsqldb/test-db;shutdown=true</database.hsqldb.url>
+
+        <database.test.driver>org.hsqldb.jdbc.JDBCDriver</database.test.driver>
+        <database.test.url>${database.hsqldb.url}</database.test.url>
+        <database.test.user>any</database.test.user>
+        <database.test.password>any</database.test.password>
+        <database.test.hibernate.dialect>org.hibernate.dialect.HSQLDialect</database.test.hibernate.dialect>
+        <!-- ================================================== :~) -->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.no-ip.mikelue.jpa</groupId>
+            <artifactId>core</artifactId>
+			<version>1.0.0</version>
+        </dependency>
+
+        <!-- Dependency Libraries -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${version.liquibase}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${version.dbunit}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${version.snakeyaml}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <!-- :~) -->
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- :~) -->
+
+        <!-- Spring Frameworks(Optional) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- :~) -->
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb-j5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+			<groupId>com.googlecode.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- :~) -->
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.swp</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <links>
+                        <link>http://snakeyamlrepo.appspot.com/releases/1.9/site/apidocs/</link>
+                        <link>http://www.liquibase.org/api/</link>
+                        <link>http://www.dbunit.org/apidocs/</link>
+                        <link>http://testng.org/javadocs/</link>
+                    </links>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/TestNG-MainSuite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="SQL_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>target/log/sql.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Hibernate Logging -->
+    <logger name="org.hibernate.transaction" level="TRACE" additivity="false">
+        <appender-ref ref="SQL_LOG" />
+    </logger>
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="SQL_LOG" />
+    </logger>
+    <logger name="org.hibernate.type.descriptor.sql" level="TRACE" additivity="false">
+        <appender-ref ref="SQL_LOG" />
+    </logger>
+    <!-- :~) -->
+
+    <logger name="org.no_ip.mikelue.jpa.core" level="INFO" />
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SQL_LOG" />
+    </root>
+</configuration>
