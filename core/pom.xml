@@ -11,14 +11,13 @@
     <parent>
         <groupId>org.no-ip.mikelue.jpa</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.1</version>
+		<version>1.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>core</artifactId>
     <name>JPA core enhanced library</name>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
 
     <properties>
         <!-- Version definitions -->

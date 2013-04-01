@@ -21,11 +21,9 @@
     <artifactId>test</artifactId>
     <name>Testing library for JPA</name>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
 
     <properties>
         <!-- Version definitions -->
-        <version.mikelue.jpa>1.0.0</version.mikelue.jpa>
         <version.dbunit>2.4.9</version.dbunit>
         <version.snakeyaml>1.12</version.snakeyaml>
         <!-- :~) -->
@@ -50,7 +48,7 @@
         <dependency>
             <groupId>org.no-ip.mikelue.jpa</groupId>
             <artifactId>core</artifactId>
-			<version>1.0.0</version>
+			<version>${version.project}</version>
         </dependency>
 
         <!-- Dependency Libraries -->
