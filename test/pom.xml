@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.no-ip.mikelue.jpa</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -26,8 +26,8 @@
     <properties>
         <!-- Version definitions -->
         <version.mikelue.jpa>1.0.0</version.mikelue.jpa>
-        <version.dbunit>2.4.8</version.dbunit>
-        <version.snakeyaml>1.11</version.snakeyaml>
+        <version.dbunit>2.4.9</version.dbunit>
+        <version.snakeyaml>1.12</version.snakeyaml>
         <!-- :~) -->
 
         <!-- Test environment for database -->
@@ -145,7 +145,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <links>
-                        <link>http://snakeyamlrepo.appspot.com/releases/1.9/site/apidocs/</link>
+                        <link>http://snakeyamlrepo.appspot.com/releases/1.10/site/apidocs/</link>
                         <link>http://www.liquibase.org/api/</link>
                         <link>http://www.dbunit.org/apidocs/</link>
                         <link>http://testng.org/javadocs/</link>

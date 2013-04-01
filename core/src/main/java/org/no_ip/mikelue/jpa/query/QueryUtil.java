@@ -102,7 +102,7 @@ public class QueryUtil {
     public static Object getSingleResultByIncrementalQuery(
         SingleResultQueryAction firstAction, SingleResultQueryAction secondAction, SingleResultQueryAction... actions
     ) {
-        return QueryUtil.<Object>getSingleResultByIncrementalQuery(firstAction, secondAction, actions);
+		return getSingleResultByIncrementalQueryImpl(firstAction, secondAction, actions);
     }
 
     /**
@@ -122,31 +122,7 @@ public class QueryUtil {
     public static <T> T getSingleResultByIncrementalQuery(
         TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction, TypedSingleResultQueryAction<T>... actions
     ) {
-        T result = firstAction.getSingleResult();
-        if (result != null) {
-            return result;
-        }
-        logger.debug("1st query[{}] for single result is null", firstAction.getClass().getSimpleName());
-
-        result = secondAction.getSingleResult();
-        if (result != null) {
-            return result;
-        }
-        logger.debug("2nd query[{}] for single result is null", secondAction.getClass().getSimpleName());
-
-        /**
-         * Exhaust other actions until any of the queries retrieve viable data
-         */
-        for (TypedSingleResultQueryAction<T> action: actions) {
-            result = action.getSingleResult();
-            if (result != null) {
-                break;
-            }
-            logger.debug("Query[{}] for single result is null", action.getClass().getSimpleName());
-        }
-        // :~)
-
-        return result;
+		return getSingleResultByIncrementalQueryImpl(firstAction, secondAction, actions);
     }
 
     /**
@@ -165,7 +141,7 @@ public class QueryUtil {
     public static List<Object> getListResultByIncrementalQuery(
         ListResultQueryAction firstAction, ListResultQueryAction secondAction, ListResultQueryAction... actions
     ) {
-        return QueryUtil.<Object>getListResultByIncrementalQuery(firstAction, secondAction, actions);
+        return QueryUtil.<Object>getListResultByIncrementalQueryImpl(firstAction, secondAction, actions);
     }
 
     /**
@@ -182,8 +158,55 @@ public class QueryUtil {
      * @see #getListResultByIncrementalQuery(ListResultQueryAction, ListResultQueryAction, ListResultQueryAction...)
      */
     public static <T> List<T> getListResultByIncrementalQuery(
-        TypedListResultQueryAction<T> firstAction, TypedListResultQueryAction<T> secondAction, TypedListResultQueryAction<T>... actions
+        TypedListResultQueryAction<T> firstAction, TypedListResultQueryAction<T> secondAction,
+		TypedListResultQueryAction<T>... actions
     ) {
+		return getListResultByIncrementalQueryImpl(firstAction, secondAction, actions);
+    }
+
+	/**
+	 * This method as alias name of calling method to
+	 * prevent recursive calling of related methods<p>
+	 */
+	private static <T> T getSingleResultByIncrementalQueryImpl(
+        TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction,
+		TypedSingleResultQueryAction<T>... actions
+	) {
+		T result = firstAction.getSingleResult();
+		if (result != null) {
+			return result;
+		}
+		logger.debug("1st query[{}] for single result is null", firstAction.getClass().getSimpleName());
+
+		result = secondAction.getSingleResult();
+		if (result != null) {
+			return result;
+		}
+		logger.debug("2nd query[{}] for single result is null", secondAction.getClass().getSimpleName());
+
+		/**
+		 * Exhaust other actions until any of the queries retrieve viable data
+		 */
+		for (TypedSingleResultQueryAction<T> action: actions) {
+			result = action.getSingleResult();
+			if (result != null) {
+				break;
+			}
+			logger.debug("Query[{}] for single result is null", action.getClass().getSimpleName());
+		}
+		// :~)
+
+		return result;
+	}
+
+	/**
+	 * This method as alias name of calling method to
+	 * prevent recursive calling of related methods<p>
+	 */
+	private static <T> List<T> getListResultByIncrementalQueryImpl(
+        TypedListResultQueryAction<T> firstAction, TypedListResultQueryAction<T> secondAction,
+		TypedListResultQueryAction<T>... actions
+	) {
         List<T> result = firstAction.getListResult();
         if (result.size() > 0) {
             return result;
@@ -209,5 +232,5 @@ public class QueryUtil {
         // :~)
 
         return result;
-    }
+	}
 }
