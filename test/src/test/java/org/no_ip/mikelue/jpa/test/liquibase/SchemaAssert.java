@@ -2,7 +2,7 @@ package org.no_ip.mikelue.jpa.test.liquibase;
 
 import org.testng.Assert;
 import org.testng.TestException;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -10,11 +10,11 @@ import javax.sql.DataSource;
  * Assert the schema.<p>
  */
 public class SchemaAssert {
-    private SimpleJdbcTemplate jdbcTmpl;
+    private JdbcTemplate jdbcTmpl;
 
     public SchemaAssert(DataSource newDataSource)
     {
-        jdbcTmpl = new SimpleJdbcTemplate(newDataSource);
+        jdbcTmpl = new JdbcTemplate(newDataSource);
     }
 
     /**

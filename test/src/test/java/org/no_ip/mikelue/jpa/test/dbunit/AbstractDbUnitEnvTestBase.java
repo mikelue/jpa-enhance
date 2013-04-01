@@ -5,13 +5,13 @@ import org.no_ip.mikelue.jpa.test.dbunit.YamlDataSet;
 
 import org.dbunit.dataset.Column;
 import org.dbunit.dataset.DataSetException;
-import org.dbunit.dataset.datatype.DataType;
-import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.DefaultDataSet;
 import org.dbunit.dataset.DefaultTable;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.datatype.DataType;
+import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.testng.annotations.BeforeClass;
 
 import java.sql.SQLException;
@@ -21,13 +21,13 @@ import javax.sql.DataSource;
  * Provides common, and rough utility in testing for DBUnit.<p>
  */
 public abstract class AbstractDbUnitEnvTestBase {
-    private SimpleJdbcTemplate jdbcTmpl;
+    private JdbcTemplate jdbcTmpl;
     private DataSource dataSource;
     private IDataTypeFactory dataTypeFactory;
 
     public AbstractDbUnitEnvTestBase() {}
 
-    public SimpleJdbcTemplate getJdbcTmpl()
+    public JdbcTemplate getJdbcTmpl()
     {
         return jdbcTmpl;
     }
@@ -56,7 +56,7 @@ public abstract class AbstractDbUnitEnvTestBase {
     {
         dataSource = DatabaseEnvUtil.buildDataSource(getClass().getSimpleName());
         dataTypeFactory = new HsqldbDataTypeFactory();
-        jdbcTmpl = new SimpleJdbcTemplate(dataSource);
+        jdbcTmpl = new JdbcTemplate(dataSource);
     }
 
     /**
