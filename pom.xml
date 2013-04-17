@@ -22,6 +22,7 @@
         <version.commons.lang>2.6</version.commons.lang>
         <version.hibernate>4.1.7.Final</version.hibernate>
         <version.hsqldb>2.2.4</version.hsqldb>
+        <version.java.validation>1.1.0.Final</version.java.validation>
         <version.javax.inject>1</version.javax.inject>
         <version.jmockit>1.1</version.jmockit>
         <version.liquibase>2.0.5</version.liquibase>
@@ -127,6 +128,12 @@
 			</dependency>
 			<!-- :~) -->
 
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${version.java.validation}</version>
+			</dependency>
+
 			<!--
 			  - Dependencies for testing
 			  -->
@@ -166,12 +173,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.0</version>
+                    <version>3.1</version>
                     <configuration>
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
 						<compilerArguments>
-							<bootclasspath>${JRE_HOME}\lib\rt.jar</bootclasspath>
+							<bootclasspath>${JAVA_HOME}\jre\lib\rt.jar</bootclasspath>
 						</compilerArguments>
                     </configuration>
                 </plugin>
@@ -202,4 +209,15 @@
 		<developerConnection>scm:git:git@github.com:mikelue/jpa-enhance.git</developerConnection>
 		<url>https://github.com/mikelue/jpa-enhance.git</url>
 	</scm>
+
+	<repositories>
+		<repository>
+			<id>mirror-mikelue</id>
+			<name>Mike Lue's Mirror</name>
+			<url>http://mikelue.no-ip.org:8055/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 </project>
