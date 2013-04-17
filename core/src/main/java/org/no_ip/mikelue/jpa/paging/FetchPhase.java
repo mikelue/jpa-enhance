@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.paging;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 /**
  * 查詢取得結果時，用來處理取不到資料時，兩階段查詢的階段常數

@@ -1,12 +1,11 @@
 package org.no_ip.mikelue.jpa.paging;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.math.IntRange;
+import org.apache.commons.lang3.ArrayUtils;
 import mockit.Mocked;
 import mockit.NonStrictExpectations;
 import org.testng.annotations.Test;
@@ -22,8 +21,10 @@ public class PagingUtilTest {
 	private static final List<Integer> testData;
 	private static final List<Integer> testEmptyData = Collections.<Integer>emptyList();
 	static {
-		IntRange intRange = new IntRange(1, 100);
-		testData = Arrays.asList(ArrayUtils.toObject(intRange.toArray()));
+		testData = new ArrayList<Integer>(100);
+		for (int i = 1; i <= 100; i++) {
+			testData.add(i);
+		}
 	}
 
 	@Mocked

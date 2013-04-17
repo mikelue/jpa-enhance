@@ -1,11 +1,11 @@
 package org.no_ip.mikelue.jpa.test.testng;
 
 import org.testng.ITestNGMethod;
-import static org.apache.commons.lang.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 import java.util.Arrays;
 
-import static org.apache.commons.lang.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.join;
 
 /**
  * This class provides some utility for TestNG.<p>

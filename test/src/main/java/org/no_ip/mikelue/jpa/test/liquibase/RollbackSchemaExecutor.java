@@ -3,9 +3,9 @@ package org.no_ip.mikelue.jpa.test.liquibase;
 import liquibase.Liquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.StringUtils.trimToNull;
-import static org.apache.commons.lang.Validate.isTrue;
+import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 import java.util.Arrays;
 

@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.paging;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang.Validate.notNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * 兩階段分頁的執行 IoC 類別，主要責任在依傳入的 {@link FetchPhase} 參數，決定是否要執行兩階段查詢。<p>

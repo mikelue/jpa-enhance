@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.test.dbunit;
 
-import org.apache.commons.lang.mutable.MutableInt;
+import org.apache.commons.lang3.mutable.MutableInt;
 import org.dbunit.dataset.AbstractDataSet;
 import org.dbunit.dataset.Column;
 import org.dbunit.dataset.CompositeTable;

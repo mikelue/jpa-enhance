@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.paging;
 
-import static org.apache.commons.lang.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 import static com.bluetangstudio.commons.number.MathUtil.add;
 import static com.bluetangstudio.commons.number.MathUtil.multiply;

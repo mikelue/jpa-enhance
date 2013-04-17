@@ -6,7 +6,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.testng.Assert;
-import static org.apache.commons.lang.Validate.notNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * This object provide various assertion for JSR-303 testing.<p>

@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.paging;
 
-import static org.apache.commons.lang.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 /**
  * 介面程式要求分頁所需提供的基本資料。<p>

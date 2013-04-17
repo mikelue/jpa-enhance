@@ -1,11 +1,10 @@
 package org.no_ip.mikelue.jpa.paging;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.math.IntRange;
+import org.apache.commons.lang3.ArrayUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
@@ -20,8 +19,10 @@ public class FetchPhaseTest {
 	private static final List<Integer> testData;
 	private static final List<Integer> testEmptyData = Collections.<Integer>emptyList();
 	static {
-		IntRange intRange = new IntRange(1, dataSize);
-		testData = Arrays.asList(ArrayUtils.toObject(intRange.toArray()));
+		testData = new ArrayList<Integer>(dataSize);
+		for (int i = 1; i <= dataSize; i++) {
+			testData.add(i);
+		}
 	}
 
 	@Test(dataProvider="variousPageSize")

@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.query;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 排序的常數，可用來產生在 JPQL 中的 ORDER BY xxx.xxx DESC

@@ -5,7 +5,7 @@
 
     <groupId>org.no-ip.mikelue.jpa</groupId>
     <artifactId>parent</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -19,7 +19,7 @@
         <!-- Versions could be used from sub modules -->
         <version.aspectj>1.6.12</version.aspectj>
         <version.cglib>2.2.2</version.cglib>
-        <version.commons.lang>2.6</version.commons.lang>
+        <version.commons.lang3>3.1</version.commons.lang3>
         <version.hibernate>4.1.7.Final</version.hibernate>
         <version.hsqldb>2.2.4</version.hsqldb>
         <version.java.validation>1.1.0.Final</version.java.validation>
@@ -106,9 +106,9 @@
 			  - Utilities
 			  -->
 			<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
-				<version>${version.commons.lang}</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.commons.lang3}</version>
 			</dependency>
 			<!-- :~) -->
 

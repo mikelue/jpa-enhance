@@ -10,7 +10,7 @@ import mockit.MockUp;
 import mockit.Verifications;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.apache.commons.lang.reflect.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 /**
  * 測試二階段查詢功能

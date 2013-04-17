@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.data;
 
-import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.sql.Date;
 import java.sql.Timestamp;
