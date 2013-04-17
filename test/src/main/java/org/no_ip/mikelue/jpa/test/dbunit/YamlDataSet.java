@@ -237,7 +237,7 @@ public class YamlDataSet extends AbstractDataSet {
         }
 
         if (leftColumnSet.equals(rightColumnSet)) {
-            logger.debug("[Combine] Two rows is equal.");
+            logger.trace("[Combine] Two rows is equal.");
             return new CompositeTable(leftTable, rightTable);
         }
         // :~)
@@ -247,23 +247,23 @@ public class YamlDataSet extends AbstractDataSet {
          */
         Set<Column> finalColumnSet, combinedColumnSet;
         if (rightColumnSet.size() < leftColumnSet.size()) {
-            logger.debug("[Combine] columns of rigth table to left table.");
+            logger.trace("[Combine] columns of rigth table to left table.");
             finalColumnSet = leftColumnSet;
             combinedColumnSet = rightColumnSet;
         } else {
-            logger.debug("[Combine] columns of left table to right table.");
+            logger.trace("[Combine] columns of left table to right table.");
             finalColumnSet = rightColumnSet;
             combinedColumnSet = leftColumnSet;
         }
         for (Column combinedColumn: combinedColumnSet) {
             boolean added = finalColumnSet.add(combinedColumn);
-            logger.debug(
+            logger.trace(
                 "[Combine] column[{}] result: {}",
                 combinedColumn.getColumnName(), added
             );
         }
 
-        logger.debug("[Combine] result: {}", finalColumnSet);
+        logger.trace("[Combine] result: {}", finalColumnSet);
         // :~)
 
         DefaultTable newTable = new DefaultTable(
