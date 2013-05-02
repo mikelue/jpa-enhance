@@ -1,11 +1,23 @@
 package org.no_ip.mikelue.jpa.test.dbunit;
 
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static java.sql.Types.*;
+
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.dbunit.dataset.AbstractDataSet;
 import org.dbunit.dataset.Column;
 import org.dbunit.dataset.CompositeTable;
 import org.dbunit.dataset.DataSetException;
-import org.dbunit.dataset.datatype.DataType;
 import org.dbunit.dataset.DefaultTable;
 import org.dbunit.dataset.DefaultTableIterator;
 import org.dbunit.dataset.DefaultTableMetaData;
@@ -14,19 +26,11 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ITableIterator;
 import org.dbunit.dataset.ITableMetaData;
 import org.dbunit.dataset.NoSuchColumnException;
+import org.dbunit.dataset.datatype.DataType;
+import org.dbunit.dataset.datatype.DataType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
-
-import java.io.InputStream;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * This class is a {@link IDataSet} which accepts data from <a href="http://yaml.org/">YAML</a> format.<p>
@@ -242,34 +246,10 @@ public class YamlDataSet extends AbstractDataSet {
         }
         // :~)
 
-        /**
-         * Generate a new meta data
-         */
-        Set<Column> finalColumnSet, combinedColumnSet;
-        if (rightColumnSet.size() < leftColumnSet.size()) {
-            logger.trace("[Combine] columns of rigth table to left table.");
-            finalColumnSet = leftColumnSet;
-            combinedColumnSet = rightColumnSet;
-        } else {
-            logger.trace("[Combine] columns of left table to right table.");
-            finalColumnSet = rightColumnSet;
-            combinedColumnSet = leftColumnSet;
-        }
-        for (Column combinedColumn: combinedColumnSet) {
-            boolean added = finalColumnSet.add(combinedColumn);
-            logger.trace(
-                "[Combine] column[{}] result: {}",
-                combinedColumn.getColumnName(), added
-            );
-        }
-
-        logger.trace("[Combine] result: {}", finalColumnSet);
-        // :~)
-
         DefaultTable newTable = new DefaultTable(
             new DefaultTableMetaData(
                 tableName,
-                finalColumnSet.toArray(new Column[0])
+                combineMetaData(leftColumnSet, rightColumnSet)
             )
         );
 
@@ -285,6 +265,158 @@ public class YamlDataSet extends AbstractDataSet {
         return newTable;
     }
 
+	private Column[] combineMetaData(Set<Column> leftColumns, Set<Column> rightColumns)
+	{
+		/**
+		 * Collect the name for all of the columns
+		 */
+		Map<String, Column> nameMapOfLeftColumns = buildMapOfColumnName(leftColumns);
+		Map<String, Column> nameMapOfRightColumns = buildMapOfColumnName(rightColumns);
+
+		Set<String> nameOfAllColumns = new HashSet<String>(leftColumns.size() + rightColumns.size());
+		nameOfAllColumns.addAll(nameMapOfLeftColumns.keySet());
+		nameOfAllColumns.addAll(nameMapOfRightColumns.keySet());
+		// :~)
+
+		Set<Column> resultColumns = new HashSet<Column>();
+
+		/**
+		 * Merge the schema by their result of meged name for columns
+		 */
+		for (String nameOfColumn: nameOfAllColumns) {
+			Column columnOnLeftSchema = nameMapOfLeftColumns.get(nameOfColumn);
+			Column columnOnRightSchema = nameMapOfRightColumns.get(nameOfColumn);
+
+			Column choosedColumn = figureOutAProperColumn(
+				columnOnLeftSchema, columnOnRightSchema
+			);
+
+			logger.info("Add column to merged schema: {}", choosedColumn);
+
+			resultColumns.add(choosedColumn);
+		}
+		// :~)
+
+		return resultColumns.toArray(new Column[0]);
+	}
+	private Column figureOutAProperColumn(Column leftColumn, Column rightColumn)
+	{
+		/**
+		 * Add column if there is only one side has such column
+		 */
+		if (leftColumn != null && rightColumn == null) {
+			logger.trace("Use column definition only existing at left: {}", leftColumn);
+			return leftColumn;
+		}
+		if (leftColumn == null && rightColumn != null) {
+			logger.trace("Use column definition only existing at right: {}", rightColumn);
+			return rightColumn;
+		}
+		// :~)
+
+		/**
+		 * Adds column(any one of two is acceptable)
+		 */
+		if (leftColumn.equals(rightColumn)) {
+			logger.trace("The definition of two columns are same.");
+			return leftColumn;
+		}
+		// :~)
+
+		/**
+		 * Choose a more compatible type of column as the final one
+		 */
+		int compatibleWeightOfLeft = compatibleWeightOfDataType(leftColumn.getDataType());
+		int compatibleWeightOfRight = compatibleWeightOfDataType(rightColumn.getDataType());
+
+		logger.trace(
+			"Compare weight of compatibility. Left Type: [{}]W[{}] Right Type: [{}]W[{}]",
+			leftColumn.getDataType(), rightColumn.getDataType(),
+			compatibleWeightOfLeft, compatibleWeightOfRight
+		);
+
+		if (compatibleWeightOfLeft > compatibleWeightOfRight) {
+			logger.trace("Choose column from left: {}", leftColumn);
+			return leftColumn;
+		}
+		if (compatibleWeightOfRight > compatibleWeightOfLeft) {
+			logger.trace("Choose column from right: {}", rightColumn);
+			return rightColumn;
+		}
+
+		logger.error(
+			"Can't discriminate the compatible for columns. Type(Left): [{}] Type(Right): [{}]",
+			leftColumn.getDataType(),
+			rightColumn.getDataType()
+		);
+		throw new RuntimeException("Can't discriminate the compatible for columns.");
+		// :~)
+	}
+	private int compatibleWeightOfDataType(DataType dataType)
+	{
+		switch (dataType.getSqlType()) {
+			case VARCHAR:
+				return 7;
+			case CHAR:
+			case LONGVARCHAR:
+				return 6;
+
+			case TIME:
+			case DATE:
+			case TIMESTAMP:
+				return 5;
+
+			case NUMERIC:
+			case DECIMAL:
+				return 4;
+
+			case BIGINT:
+			case INTEGER:
+			case SMALLINT:
+			case TINYINT:
+				return 3;
+
+			case REAL:
+				return 2;
+			case DOUBLE:
+				return 1;
+
+			case FLOAT:
+			case BIT:
+			case BOOLEAN:
+				return 0;
+
+			case OTHER:
+			case NULL:
+				return -1;
+
+			default:
+				logger.error("Unsupported compatible of data type: {}, SQL type: {}", dataType, dataType.getSqlType());
+				throw new RuntimeException("Unsupported compatible of data type: " + dataType);
+			//BINARY
+			//VARBINARY
+			//LONGVARBINARY
+			//ARRAY
+			//BLOB
+			//CLOB
+			//DATALINK
+			//DISTINCT
+			//JAVA_OBJECT
+			//REF
+			//STRUCT
+		}
+	}
+	private Map<String, Column> buildMapOfColumnName(Collection<Column> columns)
+	{
+		Map<String, Column> nameOfColumns = new HashMap<String, Column>(columns.size());
+
+		for (Column c: columns) {
+			nameOfColumns.put(c.getColumnName(), c);
+		}
+
+		return nameOfColumns;
+	}
+
     private void mergeDataToTable(DefaultTable mergeTable, ITable srcTable, MutableInt numberOfRow)
     {
         logger.debug("Merge table rows: [{}]. Source table rows: [{}]",
@@ -299,7 +431,7 @@ public class YamlDataSet extends AbstractDataSet {
                     Object value = srcTable.getValue(i, c.getColumnName());
 
                     logger.debug(
-                        "Merger data. Row: [{}]. Column: [{}]. Data: [{}]",
+                        "Merge data. Row: [{}]. Column: [{}]. Data: [{}]",
                         new Object[] {
                             i, c.getColumnName(), value
                         }

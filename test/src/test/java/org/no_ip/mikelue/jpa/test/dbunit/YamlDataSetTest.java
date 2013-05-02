@@ -5,8 +5,9 @@ import org.no_ip.mikelue.jpa.data.DateTimeUtil;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.testng.annotations.Test;
+import org.dbunit.dataset.ITableMetaData;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,10 +25,13 @@ public class YamlDataSetTest {
     @Test
     public void normalLoad() throws DataSetException
     {
+        /**
+         * Columns(5): d1_id, d1_account, d1_password, d1_word, d1_time_created
+         */
         IDataSet testDataSet = new YamlDataSet(
             " tt_d1: [" +
             "     { d1_id: 101, d1_account: 'u001', d1_time_created: 2008-03-01 }," +
-            "     { d1_id: 102, d1_account: 'u002', d1_time_created: 2008-06-12 }," +
+            "     { d1_id: 102, d1_account: 'u002', d1_time_created: \"As String\" }," +
             "     { d1_id: 103, d1_account: 'u003', d1_password: 'password 2', d1_time_created: 2009-01-11 }," +
             "     { d1_id: 104, d1_account: 'u004', d1_word: 'word 3', d1_time_created: 2010-11-21 }" +
             " ]\n" +
@@ -36,6 +40,7 @@ public class YamlDataSetTest {
             "     d2_account: 'u001'" +
             " }"
         );
+        // :~)
 
         /**
          * Assert tables' name which must be loaded
@@ -50,11 +55,18 @@ public class YamlDataSetTest {
         /**
          * Assert meta data of table(throw exception if column doens't exist)
          */
-        d1Table.getTableMetaData().getColumnIndex("d1_id");
-        d1Table.getTableMetaData().getColumnIndex("d1_account");
-        d1Table.getTableMetaData().getColumnIndex("d1_time_created");
-        d1Table.getTableMetaData().getColumnIndex("d1_password");
-        d1Table.getTableMetaData().getColumnIndex("d1_word");
+		ITableMetaData testedMetaData = d1Table.getTableMetaData();
+
+		org.slf4j.LoggerFactory.getLogger(YamlDataSetTest.class).warn(
+			 "Columns: {}", testedMetaData
+		);
+		Assert.assertEquals(testedMetaData.getColumns().length, 5);
+
+        testedMetaData.getColumnIndex("d1_id");
+        testedMetaData.getColumnIndex("d1_account");
+        testedMetaData.getColumnIndex("d1_time_created");
+        testedMetaData.getColumnIndex("d1_password");
+        testedMetaData.getColumnIndex("d1_word");
         // :~)
 
         /**
