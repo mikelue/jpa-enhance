@@ -5,7 +5,7 @@
 
     <groupId>org.no-ip.mikelue.jpa</groupId>
     <artifactId>parent</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -17,7 +17,6 @@
 		<version.project>${project.version}</version.project>
 
         <!-- Versions could be used from sub modules -->
-        <version.aspectj>1.6.12</version.aspectj>
         <version.cglib>2.2.2</version.cglib>
         <version.commons.lang3>3.1</version.commons.lang3>
         <version.hibernate>4.1.7.Final</version.hibernate>
@@ -78,17 +77,6 @@
 						<artifactId>commons-logging</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aspects</artifactId>
-				<version>${version.springframework}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>${version.aspectj}</version>
-				<optional>true</optional>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>

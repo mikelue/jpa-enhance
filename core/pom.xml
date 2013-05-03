@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.no-ip.mikelue.jpa</groupId>
         <artifactId>parent</artifactId>
-		<version>1.0.3</version>
+		<version>1.0.4</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -68,16 +68,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -161,51 +151,6 @@
         </testResources>
 
         <plugins>
-            <!--
-              - AspectJ weaver for spring managed objects
-              -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.4</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <verbose>false</verbose>
-                    <outxml>true</outxml>
-                    <includes>
-                        <include>**/springframework/*.java</include>
-                    </includes>
-                    <aspectLibraries>
-                        <aspectLibrary>
-                            <groupId>org.springframework</groupId>
-                            <artifactId>spring-aspects</artifactId>
-                        </aspectLibrary>
-                    </aspectLibraries>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${version.aspectj}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjtools</artifactId>
-                        <version>${version.aspectj}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <!-- :~) -->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
