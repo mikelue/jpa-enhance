@@ -2,8 +2,8 @@ package org.no_ip.mikelue.jpa.paging;
 
 import static org.apache.commons.lang3.Validate.isTrue;
 
-import static com.bluetangstudio.commons.number.MathUtil.add;
-import static com.bluetangstudio.commons.number.MathUtil.multiply;
+import static org.no_ip.mikelue.jpa.commons.number.MathUtil.add;
+import static org.no_ip.mikelue.jpa.commons.number.MathUtil.multiply;
 
 /**
  * 分頁的結果物件，本類別有兩組方法，一組給 JPA 用來設定 {@link javax.persistence.Query#setFirstResult(int)} 與

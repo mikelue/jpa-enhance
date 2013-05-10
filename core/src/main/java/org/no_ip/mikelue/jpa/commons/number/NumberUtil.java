@@ -1,4 +1,4 @@
-package com.bluetangstudio.commons.number;
+package org.no_ip.mikelue.jpa.commons.number;
 
 /**
  * 數字相關的工具類別。<p>
