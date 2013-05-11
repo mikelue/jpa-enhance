@@ -20,7 +20,7 @@ public class YamlDataSetTest {
     public YamlDataSetTest() {}
 
     /**
-     * Test the loading of normal YAML data.<p>
+     * Tests the loading of normal YAML data.<p>
      */
     @Test
     public void normalLoad() throws DataSetException
@@ -103,7 +103,7 @@ public class YamlDataSetTest {
     }
 
     /**
-     * Test the loading from {@link InputStream}
+     * Tests the loading from {@link InputStream}
      */
     @Test(dependsOnMethods="normalLoad")
     public void loadFromInputStream() throws DataSetException
@@ -118,7 +118,7 @@ public class YamlDataSetTest {
     }
 
     /**
-     * Test the loading from {@link Reader}
+     * Tests the loading from {@link Reader}
      */
     @Test(dependsOnMethods="normalLoad")
     public void loadFromReader() throws DataSetException
@@ -136,7 +136,7 @@ public class YamlDataSetTest {
     }
 
     /**
-     * Tes if The content of YAML can't be recoginized as table data.<p>
+     * Tests if The content of YAML can't be recoginized as table data.<p>
      */
     @Test(expectedExceptions=RuntimeException.class, expectedExceptionsMessageRegExp=".*Mapping.*")
     public void wrongTableSyntax()
