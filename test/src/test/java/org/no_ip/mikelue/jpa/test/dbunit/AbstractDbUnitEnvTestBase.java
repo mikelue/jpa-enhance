@@ -112,7 +112,7 @@ public abstract class AbstractDbUnitEnvTestBase {
         "   CONSTRAINT fk_tt_box__tt_key FOREIGN KEY(box_key_id)" +
         "       REFERENCES tt_key(key_id)" +
         " );";
-    protected void prepareForeignKeySchema() throws SQLException
+    protected void prepareForeignKeySchema()
     {
         getJdbcTmpl().update(TEST_DB_SCHEMA_FK_DROP);
         getJdbcTmpl().update(TEST_DB_SCHEMA_FK);
