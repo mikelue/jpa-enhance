@@ -1,5 +1,6 @@
 package org.no_ip.mikelue.jpa.test.dbunit;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.operation.DatabaseOperation;
 import org.testng.Assert;
@@ -12,30 +13,36 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
 	/**
 	 * Tests the building of data(in transaction) while a error occurs.<p>
 	 */
-	@Test(expectedExceptions=DbUnitExecuteException.class)
-	public void buildDataWithErrorInTransaction()
+	@Test(expectedExceptions=DatabaseUnitException.class, expectedExceptionsMessageRegExp=".*tt_person.*")
+	public void buildDataWithErrorInTransaction() throws DatabaseUnitException
 	{
         DbUnitBuilder builder = getDbUnitBuilder();
 		builder.setRunAsTransaction(true);
 
-        builder.runDatabaseOperation(
-			new YamlDataSet(
-				" tt_person: \n" +
-				" - {ps_id: 1, ps_name: \"Name of 1\"}\n" +
-				" - {ps_id: 2, ps_name: \"Name of 2\"}\n" +
-				" - {ps_id: 1, ps_name: \"Name of 1\"}\n" // Violation of primary key
-			),
-			DatabaseOperation.INSERT
-        );
+		try {
+			builder.runDatabaseOperation(
+				new YamlDataSet(
+					" tt_person: \n" +
+					" - {ps_id: 1, ps_name: \"Name of 1\"}\n" +
+					" - {ps_id: 2, ps_name: \"Name of 2\"}\n" +
+					" - {ps_id: 1, ps_name: \"Name of 1\"}\n" // Violation of primary key
+				),
+				DatabaseOperation.INSERT
+			);
+		} catch (DbUnitExecuteException e) {
+			/**
+			 * Assert that there is no data that can be inserted because of rollback of transaction
+			 */
+			Assert.assertEquals(
+				getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
+				0
+			);
+			// :~)
 
-        /**
-         * Assert that there is no data that can be inserted because of rollback of transaction
-         */
-		Assert.assertEquals(
-			getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
-			0
-		);
-        // :~)
+			throw (DatabaseUnitException)e.getCause();
+		}
+
+		Assert.fail("Uneffective test");
 	}
 
     /**
