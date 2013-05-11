@@ -2,22 +2,49 @@ package org.no_ip.mikelue.jpa.test.dbunit;
 
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.operation.DatabaseOperation;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.Assert;
 
 public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
     public DbUnitBuilderTest() {}
 
+	/**
+	 * Tests the building of data(in transaction) while a error occurs.<p>
+	 */
+	@Test(expectedExceptions=DbUnitExecuteException.class)
+	public void buildDataWithErrorInTransaction()
+	{
+        DbUnitBuilder builder = getDbUnitBuilder();
+		builder.setRunAsTransaction(true);
+
+        builder.runDatabaseOperation(
+			new YamlDataSet(
+				" tt_person: \n" +
+				" - {ps_id: 1, ps_name: \"Name of 1\"}\n" +
+				" - {ps_id: 2, ps_name: \"Name of 2\"}\n" +
+				" - {ps_id: 1, ps_name: \"Name of 1\"}\n" // Violation of primary key
+			),
+			DatabaseOperation.INSERT
+        );
+
+        /**
+         * Assert that there is no data that can be inserted because of rollback of transaction
+         */
+		Assert.assertEquals(
+			getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
+			0
+		);
+        // :~)
+	}
+
     /**
-     * Test building data(with HSQLDB, in a transaction).<p>
+     * Tests building data(with HSQLDB, in a transaction).<p>
      */
     @Test
     public void buildData()
     {
-        DbUnitBuilder builder = DbUnitBuilder.build(
-            getDataSource(), getDataTypeFactory()
-        );
+        DbUnitBuilder builder = getDbUnitBuilder();
         builder.setRunAsTransaction(true);
 
         builder.runDatabaseOperation(
@@ -31,7 +58,7 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
     }
 
     /**
-     * Test the callback for {@ink DbUnitConnectionConfigurer}.<p>
+     * Tests the callback for {@ink DbUnitConnectionConfigurer}.<p>
      */
     @Test(dependsOnMethods="buildData")
     public void connectionConfigurer()
@@ -64,6 +91,6 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
     @AfterMethod
     private void cleanData()
     {
-        getJdbcTmpl().update("DELETE FROM tt_person");
+		getJdbcTmpl().update("DELETE FROM tt_person");
     }
 }

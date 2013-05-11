@@ -2,9 +2,10 @@ package org.no_ip.mikelue.jpa.test.dbunit;
 
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
+import org.dbunit.operation.TransactionOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.dbunit.database.DatabaseConfig.PROPERTY_DATATYPE_FACTORY;
@@ -178,33 +179,21 @@ public class DbUnitBuilder {
              * Process whether running operation in a transaction
              */
             if (runAsTransaction) {
-                logger.debug("Begin transaction while running operation");
-                dbConn.getConnection().setAutoCommit(false);
+                logger.debug("Uses transactional operation");
+				dbOperation = new TransactionOperation(dbOperation);
             }
 
             dbOperation.execute(dbConn, sourceDataSet);
-
-            if (runAsTransaction) {
-                logger.debug("Commit transaction while running operation");
-                dbConn.getConnection().commit();
-            }
             // :~)
         } catch (Exception e) {
-            if (runAsTransaction) {
-                logger.info("Rollback transaction while running operation");
-                try {
-                    dbConn.getConnection().rollback();
-                } catch (SQLException sqlException) {
-                    throw new RuntimeException("Rollback error", sqlException);
-                }
-            }
-
             logger.error("Executing database operation error", e);
             throw new DbUnitExecuteException(this, e);
         }
         // :~)
 
-        logger.debug("Executing database operation[{}] successfully.", dbOperation);
+		if (logger.isDebugEnabled()) {
+			logger.debug("Executing database operation[{}] successfully.", dbOperation.getClass().getSimpleName());
+		}
     }
 
     @Override
@@ -223,16 +212,12 @@ public class DbUnitBuilder {
             return;
         }
 
-        try {
-            if (runAsTransaction) {
-                logger.debug("Set the auto-commit back to \"true\"");
-                conn.getConnection().setAutoCommit(true);
-            }
-            conn.close();
-            logger.debug("Close database connection");
-        } catch (SQLException e) {
-            logger.error("Closing database connection error", e);
-            throw new DbUnitExecuteException(this, e);
-        }
+		try {
+			conn.close();
+			logger.debug("Close database connection");
+		} catch (SQLException e) {
+			logger.error("Closing database connection error", e);
+			throw new DbUnitExecuteException(this, e);
+		}
     }
 }
