@@ -5,7 +5,7 @@
 
     <groupId>org.no-ip.mikelue.jpa</groupId>
     <artifactId>parent</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -212,4 +212,12 @@
 			</releases>
 		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>deployment-mikelue</id>
+			<name>MikeLue Repository</name>
+			<url>http://mikelue.no-ip.org:8055/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
 </project>
