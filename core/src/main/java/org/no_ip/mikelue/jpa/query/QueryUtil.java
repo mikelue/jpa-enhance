@@ -21,9 +21,6 @@ public class QueryUtil {
      * This method is almost as same as {@link Query#getSingleResult} besides
      * won't throw {@link NoResultException} if there is nothing returned.<p>
      *
-     * This method would set {@link Query#setMaxResults max results} to "2".
-     * <b>If the {@link Query#getMaxResults} is greater than 2</b>, this method throws {@link NonUniqueResultException}.<p>
-     *
      * @param query query object
      *
      * @return return null if nothing in result list.
@@ -34,29 +31,17 @@ public class QueryUtil {
      */
     public static Object getSingleResult(Query query)
     {
-        if (query.getMaxResults() > 2) {
-            query.setMaxResults(2);
-        }
-
-        List<?> resultList = query.getResultList();
-
-        if (resultList.size() > 1) {
-            throw new NonUniqueResultException("Query returns more than one rows");
-        }
-
-        if (resultList.size() == 0) {
-            return null;
-        }
-
-        return resultList.get(0);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			logger.trace("No result, gives null");
+			return null;
+		}
     }
 
     /**
      * This method is almost as same as {@link TypedQuery#getSingleResult} besides
      * won't throw {@link NoResultException} if there is nothing returned.<p>
-     *
-     * This method would set {@link Query#setMaxResults max results} to "2".
-     * <b>If the {@link Query#getMaxResults} is greater than 2</b>, this method throws {@link NonUniqueResultException}.<p>
      *
      * @param typedQuery Type-Safe query object
      *
@@ -68,21 +53,12 @@ public class QueryUtil {
      */
     public static <T> T getSingleResult(TypedQuery<T> typedQuery)
     {
-        if (typedQuery.getMaxResults() > 2) {
-            typedQuery.setMaxResults(2);
-        }
-
-        List<T> resultList = typedQuery.getResultList();
-
-        if (resultList.size() > 1) {
-            throw new NonUniqueResultException("Query returns more than one rows");
-        }
-
-        if (resultList.size() == 0) {
-            return null;
-        }
-
-        return resultList.get(0);
+		try {
+			return typedQuery.getSingleResult();
+		} catch (NoResultException e) {
+			logger.trace("No result, gives null");
+			return null;
+		}
     }
 
     /**

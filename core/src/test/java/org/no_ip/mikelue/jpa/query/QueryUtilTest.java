@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.NoResultException;
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -20,89 +21,90 @@ public class QueryUtilTest {
 	public QueryUtilTest() {}
 
 	@Mocked
-	private Query query;
+	private Query mockQuery;
 	@Mocked
-	private TypedQuery<Integer> typedQuery;
+	private TypedQuery<Integer> mockTypedQuery;
 
 	/**
-	 * <ol>
-	 * 		<li>Test single result</li>
-	 * 		<li>Test nothing returned</li>
-	 * </ol>
+	 * Tests the normal mockQuery(without exception) for getting single result.<p>
 	 */
-	@Test
-	public void getSingleResult()
-	{
-        final Integer testValue = 2456;
-
+	@Test(dataProvider="GetSingleResult")
+	public void getSingleResult(
+		final Object sampleResult, Object expectedResult
+	) {
 		new NonStrictExpectations()
 		{{
-			query.getResultList();
-			result = Arrays.asList(testValue);
-			result = Collections.EMPTY_LIST;
+			mockQuery.getSingleResult();
+			result = sampleResult;
 		}};
 
-        Object r = QueryUtil.getSingleResult(query);
-		Assert.assertNotNull(r);
-		Assert.assertEquals(r, testValue);
-		Assert.assertNull(QueryUtil.getSingleResult(query));
+		Assert.assertEquals(QueryUtil.getSingleResult(mockQuery), expectedResult);
 	}
-	/**
-	 * <ol>
-	 * 		<li>Test single result</li>
-	 * 		<li>Test nothing returned</li>
-	 * </ol>
-	 */
-	@Test
-	public void getTypedSingleResult()
+	@DataProvider(name="GetSingleResult")
+	private Object[][] getGetSingleResult()
 	{
-        final Integer testValue = 456;
+		return new Object[][] {
+			{ 2456, 2456 },
+			{ new NoResultException(), null }
+		};
+	}
 
+	/**
+	 * Tests the normal result(without exception) to get single result by typed mockQuery.<p>
+	 */
+	@Test(dataProvider="GetTypedSingleResult")
+	public void getTypedSingleResult(
+		final Object sampleResult, Integer expectedResult
+	) {
 		new NonStrictExpectations()
 		{{
-			typedQuery.getResultList();
-			result = Arrays.asList(testValue);
-			result = Collections.<Integer>emptyList();
+			mockTypedQuery.getSingleResult();
+			result = sampleResult;
 		}};
 
-        Integer r = QueryUtil.getSingleResult(typedQuery);
-		Assert.assertNotNull(r);
-		Assert.assertEquals(r, testValue);
-		Assert.assertNull(QueryUtil.getSingleResult(typedQuery));
+		Assert.assertEquals(QueryUtil.getSingleResult(mockTypedQuery), expectedResult);
+	}
+	@DataProvider(name="GetTypedSingleResult")
+	private Object[][] getGetTypedSingleResult()
+	{
+		return new Object[][] {
+			{ 1277, 1277 },
+			{ new NoResultException(), null }
+		};
 	}
 
 	/**
 	 * Test if {@link NonUniqueResultException} thrown correctly
 	 */
-	@Test(expectedExceptions=PersistenceException.class)
+	@Test(expectedExceptions=NonUniqueResultException.class)
 	public void getSingleResultWithException()
 	{
 		new NonStrictExpectations()
 		{{
-			query.getResultList();
-			result = Arrays.asList(1, 2);
+			mockQuery.getSingleResult();
+			result = new NonUniqueResultException();
 		}};
 
-		QueryUtil.getSingleResult(query);
+		QueryUtil.getSingleResult(mockQuery);
 	}
 
 	/**
 	 * Test if {@link NonUniqueResultException} thrown correctly
 	 */
-	@Test(expectedExceptions=PersistenceException.class)
+	@Test(expectedExceptions=NonUniqueResultException.class)
 	public void getTypedSingleResultWithException()
 	{
 		new NonStrictExpectations()
 		{{
-			typedQuery.getResultList();
-			result = Arrays.asList(1, 2);
+			mockTypedQuery.getSingleResult();
+			result = new NonUniqueResultException();
 		}};
 
-		QueryUtil.getSingleResult(typedQuery);
+		QueryUtil.getSingleResult(mockTypedQuery);
 	}
 
     /**
-     * Tests the incremental query for single result
+     * Tests the incremental mockQuery for single result
      */
     @Test
     public void getSingleResultByIncrementalQuery()
@@ -130,7 +132,7 @@ public class QueryUtilTest {
               testResult_3 = "test value 3";
 
         /**
-         * Assert the viable data from 1st query
+         * Assert the viable data from 1st mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getSingleResultByIncrementalQuery(
@@ -141,7 +143,7 @@ public class QueryUtilTest {
         // :~)
 
         /**
-         * Assert the viable data from 2ed query
+         * Assert the viable data from 2ed mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getSingleResultByIncrementalQuery(
@@ -152,7 +154,7 @@ public class QueryUtilTest {
         // :~)
 
         /**
-         * Assert the viable data from 4th query
+         * Assert the viable data from 4th mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getSingleResultByIncrementalQuery(
@@ -164,7 +166,7 @@ public class QueryUtilTest {
     }
 
     /**
-     * Tests the incremental query for list result
+     * Tests the incremental mockQuery for list result
      */
     @Test
     public void getListResultByIncrementalQuery()
@@ -194,7 +196,7 @@ public class QueryUtilTest {
               testResult_3 = 7;
 
         /**
-         * Assert the viable data from 1st query
+         * Assert the viable data from 1st mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getListResultByIncrementalQuery(
@@ -205,7 +207,7 @@ public class QueryUtilTest {
         // :~)
 
         /**
-         * Assert the viable data from 2ed query
+         * Assert the viable data from 2ed mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getListResultByIncrementalQuery(
@@ -216,7 +218,7 @@ public class QueryUtilTest {
         // :~)
 
         /**
-         * Assert the viable data from 4th query
+         * Assert the viable data from 4th mockQuery
          */
         Assert.assertEquals(
             QueryUtil.getListResultByIncrementalQuery(
