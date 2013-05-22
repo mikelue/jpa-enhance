@@ -5,7 +5,7 @@
 
     <groupId>org.no-ip.mikelue.jpa</groupId>
     <artifactId>parent</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -171,6 +171,7 @@
                         <showWarnings>true</showWarnings>
 						<compilerArguments>
 							<bootclasspath>${JAVA_HOME}\jre\lib\rt.jar</bootclasspath>
+							<Xlint/>
 						</compilerArguments>
                     </configuration>
                 </plugin>

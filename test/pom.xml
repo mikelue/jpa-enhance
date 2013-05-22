@@ -14,12 +14,13 @@
     <parent>
         <groupId>org.no-ip.mikelue.jpa</groupId>
         <artifactId>parent</artifactId>
-		<version>1.0.7</version>
+		<version>1.0.8</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>test</artifactId>
     <name>Testing library for JPA</name>
+	<version>1.0.8</version>
     <packaging>jar</packaging>
 
     <properties>
