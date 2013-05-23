@@ -27,16 +27,21 @@ public class QueryUtil {
      *
      * @throws NonUniqueResultException if more than one rows are retrived
      *
-     * @see #getSingleResult(Query)
+     * @see #getSingleResult(TypedQuery)
      */
     public static Object getSingleResult(Query query)
     {
-		try {
-			return query.getSingleResult();
-		} catch (NoResultException e) {
-			logger.trace("No result, gives null");
-			return null;
-		}
+        List<?> resultList = query.getResultList();
+
+        if (resultList.size() > 1) {
+            throw new NonUniqueResultException("Query returns more than one rows");
+        }
+
+        if (resultList.size() == 0) {
+            return null;
+        }
+
+        return resultList.get(0);
     }
 
     /**
@@ -49,16 +54,21 @@ public class QueryUtil {
      *
      * @throws NonUniqueResultException if more than one rows are retrived
      *
-     * @see #getSingleResult(TypedQuery)
+     * @see #getSingleResult(Query)
      */
     public static <T> T getSingleResult(TypedQuery<T> typedQuery)
     {
-		try {
-			return typedQuery.getSingleResult();
-		} catch (NoResultException e) {
-			logger.trace("No result, gives null");
-			return null;
-		}
+        List<T> resultList = typedQuery.getResultList();
+
+        if (resultList.size() > 1) {
+            throw new NonUniqueResultException("Query returns more than one rows");
+        }
+
+        if (resultList.size() == 0) {
+            return null;
+        }
+
+        return resultList.get(0);
     }
 
     /**

@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.NoResultException;
-import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -26,63 +25,68 @@ public class QueryUtilTest {
 	private TypedQuery<Integer> mockTypedQuery;
 
 	/**
-	 * Tests the normal mockQuery(without exception) for getting single result.<p>
+	 * Tests the normal situation(without exception) for getting single result of mockQuery.<p>
 	 */
 	@Test(dataProvider="GetSingleResult")
 	public void getSingleResult(
-		final Object sampleResult, Object expectedResult
+		final List<Integer> sampleResult, Integer expectedResult
 	) {
 		new NonStrictExpectations()
 		{{
-			mockQuery.getSingleResult();
+			mockQuery.getResultList();
 			result = sampleResult;
 		}};
 
-		Assert.assertEquals(QueryUtil.getSingleResult(mockQuery), expectedResult);
+		Assert.assertEquals(
+			QueryUtil.getSingleResult(mockQuery),
+			expectedResult
+		);
 	}
 	@DataProvider(name="GetSingleResult")
 	private Object[][] getGetSingleResult()
 	{
 		return new Object[][] {
-			{ 2456, 2456 },
-			{ new NoResultException(), null }
+			{ Arrays.asList(2456), 2456 },
+			{ Collections.<Integer>emptyList(), null },
 		};
 	}
-
 	/**
-	 * Tests the normal result(without exception) to get single result by typed mockQuery.<p>
+	 * Tests the normal situation(without exception) for getting single result of mockQuery(typed).<p>
 	 */
 	@Test(dataProvider="GetTypedSingleResult")
 	public void getTypedSingleResult(
-		final Object sampleResult, Integer expectedResult
+		final List<Integer> sampleResult, Integer expectedResult
 	) {
 		new NonStrictExpectations()
 		{{
-			mockTypedQuery.getSingleResult();
+			mockTypedQuery.getResultList();
 			result = sampleResult;
 		}};
 
-		Assert.assertEquals(QueryUtil.getSingleResult(mockTypedQuery), expectedResult);
+		Assert.assertEquals(
+			QueryUtil.getSingleResult(mockTypedQuery),
+			expectedResult
+		);
 	}
 	@DataProvider(name="GetTypedSingleResult")
 	private Object[][] getGetTypedSingleResult()
 	{
 		return new Object[][] {
-			{ 1277, 1277 },
-			{ new NoResultException(), null }
+			{ Arrays.asList(117), 117 },
+			{ Collections.<Integer>emptyList(), null },
 		};
 	}
 
 	/**
 	 * Test if {@link NonUniqueResultException} thrown correctly
 	 */
-	@Test(expectedExceptions=NonUniqueResultException.class)
+	@Test(expectedExceptions=PersistenceException.class)
 	public void getSingleResultWithException()
 	{
 		new NonStrictExpectations()
 		{{
-			mockQuery.getSingleResult();
-			result = new NonUniqueResultException();
+			mockQuery.getResultList();
+			result = Arrays.asList(1, 2);
 		}};
 
 		QueryUtil.getSingleResult(mockQuery);
@@ -91,13 +95,13 @@ public class QueryUtilTest {
 	/**
 	 * Test if {@link NonUniqueResultException} thrown correctly
 	 */
-	@Test(expectedExceptions=NonUniqueResultException.class)
+	@Test(expectedExceptions=PersistenceException.class)
 	public void getTypedSingleResultWithException()
 	{
 		new NonStrictExpectations()
 		{{
-			mockTypedQuery.getSingleResult();
-			result = new NonUniqueResultException();
+			mockTypedQuery.getResultList();
+			result = Arrays.asList(1, 2);
 		}};
 
 		QueryUtil.getSingleResult(mockTypedQuery);
