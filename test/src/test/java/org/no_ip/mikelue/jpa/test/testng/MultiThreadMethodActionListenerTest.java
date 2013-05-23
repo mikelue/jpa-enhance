@@ -73,7 +73,7 @@ public class MultiThreadMethodActionListenerTest {
                         getLogger().info("Waiting. Reached thread: {}", reachedThreads);
 
                         try {
-                            Thread.currentThread().sleep(100);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }

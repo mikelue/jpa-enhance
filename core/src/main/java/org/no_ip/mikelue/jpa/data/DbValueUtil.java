@@ -44,7 +44,7 @@ public class DbValueUtil {
 	 *
 	 * @see #convertToIntMap(Class)
 	 */
-	public static <ET extends Enum<ET> & DbValueGetter> Map<String, ET> convertToStringMap(Class<ET> typeOfDbValueGetter)
+	public static <ET extends Enum<ET> & DbValueGetter<? extends Number>> Map<String, ET> convertToStringMap(Class<ET> typeOfDbValueGetter)
 	{
 		Map<String, ET> dbValueMap = new HashMap<String, ET>(typeOfDbValueGetter.getEnumConstants().length);
 

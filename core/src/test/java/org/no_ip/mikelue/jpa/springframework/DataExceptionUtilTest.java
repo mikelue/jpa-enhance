@@ -25,6 +25,8 @@ public class DataExceptionUtilTest {
 }
 
 class SimpleException extends Exception {
+	private final static long serialVersionUID = 1L;
+
     static final String TEST_MESSAGE = "This is test message";
 
     SimpleException()

@@ -25,7 +25,7 @@ public class ValidationAssertTest {
 	@Mocked
 	private ConstraintViolation<Object> mockViolation;
 	@Mocked
-	private ConstraintDescriptor mockConstraintDescriptor;
+	private ConstraintDescriptor<?> mockConstraintDescriptor;
 
 	public ValidationAssertTest() {}
 

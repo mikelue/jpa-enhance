@@ -61,7 +61,7 @@ public class PagingUtil {
 	 * @see #queryAndFilterDataToPage(TypedQuery, PagingResultBean)
 	 */
 	@SuppressWarnings("unchecked")
-	public static List queryAndFilterDataToPage(Query query, PagingResultBean pagingResultBean)
+	public static List<Object> queryAndFilterDataToPage(Query query, PagingResultBean pagingResultBean)
 	{
 		return TwoPhasePagingRunner.runTwoPhasePagingFilter(
 			new QueryPagingFilter(query), pagingResultBean
@@ -82,7 +82,7 @@ public class PagingUtil {
 	 * @see #queryAndFilterDataToPage(TypedQuery, PagingResultBean, FetchPhase)
 	 */
 	@SuppressWarnings("unchecked")
-	public static List queryAndFilterDataToPage(Query query, PagingResultBean pagingResultBean, FetchPhase fetchPhase)
+	public static List<Object> queryAndFilterDataToPage(Query query, PagingResultBean pagingResultBean, FetchPhase fetchPhase)
 	{
 		return TwoPhasePagingRunner.runTwoPhasePagingFilter(
 			new QueryPagingFilter(query), pagingResultBean, fetchPhase
@@ -130,7 +130,7 @@ public class PagingUtil {
 /**
  * {@link Query} 分頁查詢物件
  */
-class QueryPagingFilter implements TwoPhasePagingFilter {
+class QueryPagingFilter implements TwoPhasePagingFilter<Object> {
 	private Query query;
 
 	QueryPagingFilter(Query newQuery)
@@ -143,27 +143,29 @@ class QueryPagingFilter implements TwoPhasePagingFilter {
 	}
 
 	@Override
-	public List<?> firstPhasePaging(PagingResultBean resultBean)
+	public List<Object> firstPhasePaging(PagingResultBean resultBean)
 	{
 		return firstPhasePagingImpl(query, resultBean);
 	}
 	@Override
-	public List<?> lastPhasePaging(PagingResultBean resultBean)
+	public List<Object> lastPhasePaging(PagingResultBean resultBean)
 	{
 		return lastPhasePagingImpl(query, resultBean);
 	}
 
-	static List<?> firstPhasePagingImpl(Query query, PagingResultBean resultBean)
+	@SuppressWarnings("unchecked")
+	static List<Object> firstPhasePagingImpl(Query query, PagingResultBean resultBean)
 	{
 		query.setFirstResult(resultBean.getFirstRecordNumber());
 		query.setMaxResults(resultBean.getLastRecordNumber());
-		return query.getResultList();
+		return (List<Object>)query.getResultList();
 	}
-	static List<?> lastPhasePagingImpl(Query query, PagingResultBean resultBean)
+	@SuppressWarnings("unchecked")
+	static List<Object> lastPhasePagingImpl(Query query, PagingResultBean resultBean)
 	{
 		query.setFirstResult(0);
 		query.setMaxResults(resultBean.getLastRecordNumber());
-		return query.getResultList();
+		return (List<Object>)query.getResultList();
 	}
 }
 

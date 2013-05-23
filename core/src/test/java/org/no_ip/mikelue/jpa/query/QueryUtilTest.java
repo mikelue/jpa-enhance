@@ -262,7 +262,7 @@ class FakeListQueryAction implements ListResultQueryAction {
     }
     FakeListQueryAction(int elements)
     {
-        resultList = new ArrayList(elements);
+        resultList = new ArrayList<Object>(elements);
         for (int i = 1; i <= elements; i++) {
             resultList.add(i);
         }

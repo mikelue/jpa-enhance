@@ -101,7 +101,7 @@ public class YamlDataSet extends AbstractDataSet {
     }
 
     @SuppressWarnings("unchecked")
-    private void init(Map srcData)
+    private void init(Map<?, ?> srcData)
     {
         Map<String, Object> yamlData = (Map<String, Object>)srcData;
         List<ITable> listOfTables = new ArrayList<ITable>(16);
