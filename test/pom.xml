@@ -154,13 +154,17 @@
             </resource>
         </resources>
         <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <links>
                         <link>http://snakeyamlrepo.appspot.com/releases/1.10/site/apidocs/</link>
-                        <link>http://www.liquibase.org/api/</link>
+                        <link>http://www.liquibase.org/javadoc/</link>
                         <link>http://www.dbunit.org/apidocs/</link>
                         <link>http://testng.org/javadocs/</link>
                     </links>

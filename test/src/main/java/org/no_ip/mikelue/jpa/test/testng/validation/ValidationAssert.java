@@ -10,8 +10,6 @@ import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * This object provide various assertion for JSR-303 testing.<p>
- *
- * @see AbstractValidationTestBase
  */
 public class ValidationAssert {
     private ValidationAssert() {}
@@ -19,7 +17,7 @@ public class ValidationAssert {
     /**
      * Asserts expected violation, whichi is exactly the sole violation.<p>
      *
-     * @param violations The violations produced by {@link Validator#validate()}
+     * @param violations The violations produced by {@link Validator#validate}
      * @param expectedAnnotationType The mandatory expected class of violated annotation
 	 *
 	 * @see #assertInViolations
@@ -52,7 +50,7 @@ public class ValidationAssert {
     /**
      * Asserts expected violation, which is contained in one of violations.<p>
      *
-     * @param violations The violations produced by {@link Validator#validate()}
+     * @param violations The violations produced by {@link Validator#validate}
      * @param expectedAnnotationType The mandatory expected class of violated annotation
 	 *
 	 * @see #assertViolation
