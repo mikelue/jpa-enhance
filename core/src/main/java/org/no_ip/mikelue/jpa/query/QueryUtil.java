@@ -31,7 +31,8 @@ public class QueryUtil {
      */
     public static Object getSingleResult(Query query)
     {
-        List<?> resultList = query.getResultList();
+		@SuppressWarnings("unchecked")
+        List<Object> resultList = (List<Object>)query.getResultList();
 
         if (resultList.size() > 1) {
             throw new NonUniqueResultException("Query returns more than one rows");
@@ -57,9 +58,9 @@ public class QueryUtil {
      *
      * @see #getSingleResult(Query)
      */
-    public static <T> T getSingleResult(TypedQuery<T> typedQuery)
+    public static <T> T getSingleResult(TypedQuery<? extends T> typedQuery)
     {
-        List<T> resultList = typedQuery.getResultList();
+        List<? extends T> resultList = typedQuery.getResultList();
 
         if (resultList.size() > 1) {
             throw new NonUniqueResultException("Query returns more than one rows");
@@ -112,7 +113,7 @@ public class QueryUtil {
 	 * @return The result of query
      */
     public static <T> T getSingleResultByIncrementalQuery(
-        TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction, TypedSingleResultQueryAction<T>... actions
+        TypedSingleResultQueryAction<? extends T> firstAction, TypedSingleResultQueryAction<? extends T> secondAction, TypedSingleResultQueryAction<? extends T>... actions
     ) {
 		return getSingleResultByIncrementalQueryImpl(firstAction, secondAction, actions);
     }
@@ -135,7 +136,7 @@ public class QueryUtil {
     public static List<Object> getListResultByIncrementalQuery(
         ListResultQueryAction firstAction, ListResultQueryAction secondAction, ListResultQueryAction... actions
     ) {
-        return QueryUtil.<Object>getListResultByIncrementalQueryImpl(firstAction, secondAction, actions);
+        return QueryUtil.getListResultByIncrementalQueryImpl(firstAction, secondAction, actions);
     }
 
     /**
@@ -173,8 +174,8 @@ public class QueryUtil {
 	 * @return The result of query
 	 */
 	private static <T> T getSingleResultByIncrementalQueryImpl(
-        TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction,
-		TypedSingleResultQueryAction<T>... actions
+        TypedSingleResultQueryAction<? extends T> firstAction, TypedSingleResultQueryAction<? extends T> secondAction,
+		TypedSingleResultQueryAction<? extends T>... actions
 	) {
 		T result = firstAction.getSingleResult();
 		if (result != null) {
@@ -191,7 +192,7 @@ public class QueryUtil {
 		/**
 		 * Exhaust other actions until any of the queries retrieve viable data
 		 */
-		for (TypedSingleResultQueryAction<T> action: actions) {
+		for (TypedSingleResultQueryAction<? extends T> action: actions) {
 			result = action.getSingleResult();
 			if (result != null) {
 				break;
