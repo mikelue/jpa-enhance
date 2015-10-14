@@ -26,7 +26,7 @@
     </logger>
     <!-- :~) -->
 
-    <logger name="org.no_ip.mikelue.jpa.core" level="INFO" />
+    <logger name="guru.mikelue.jpa.core" level="INFO" />
 
     <root level="WARN">
         <appender-ref ref="STDOUT" />

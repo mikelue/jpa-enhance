@@ -7,7 +7,7 @@
     <persistence-unit name="app-managed" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>org.no_ip.mikelue.jpa.model.Person</class>
+        <class>guru.mikelue.jpa.model.Person</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
@@ -28,7 +28,7 @@
     <persistence-unit name="container-managed" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>org.no_ip.mikelue.jpa.model.Car</class>
+        <class>guru.mikelue.jpa.model.Car</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

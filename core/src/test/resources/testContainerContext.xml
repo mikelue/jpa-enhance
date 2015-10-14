@@ -28,8 +28,8 @@
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-    <bean class="org.no_ip.mikelue.jpa.dao.ContainerManagedCarDao" />
-    <bean class="org.no_ip.mikelue.jpa.springframework.SpringCarDao" />
-    <bean class="org.no_ip.mikelue.jpa.springframework.SpringDefaultCarDao" />
+    <bean class="guru.mikelue.jpa.dao.ContainerManagedCarDao" />
+    <bean class="guru.mikelue.jpa.springframework.SpringCarDao" />
+    <bean class="guru.mikelue.jpa.springframework.SpringDefaultCarDao" />
     <!-- ================================================== :~) -->
 </beans>

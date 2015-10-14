@@ -7,8 +7,8 @@
         </encoder>
     </appender>
 
-    <logger name="org.no_ip.mikelue.jpa.test" level="INFO" />
-    <!--<logger name="org.no_ip.mikelue.jpa.test.dbunit.YamlDataSet" level="DEBUG" />-->
+    <logger name="guru.mikelue.jpa.test" level="INFO" />
+    <!--<logger name="guru.mikelue.jpa.test.dbunit.YamlDataSet" level="DEBUG" />-->
 
     <root level="WARN">
         <appender-ref ref="STDOUT" />
