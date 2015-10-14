@@ -8,13 +8,13 @@ import java.util.Arrays;
 import static org.apache.commons.lang3.StringUtils.join;
 
 /**
- * This class provides some utility for TestNG.<p>
+ * <p>This class provides some utility for TestNG.</p>
  */
 public class TestNGUtil {
     private TestNGUtil() {}
 
     /**
-     * Determines whether method belongs to any of groups.<p>
+     * <p>Determines whether method belongs to any of groups.</p>
      *
      * @param method The determined method
      * @param groups The groups to check

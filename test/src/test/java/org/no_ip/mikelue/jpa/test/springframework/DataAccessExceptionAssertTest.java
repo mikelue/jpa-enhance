@@ -9,7 +9,7 @@ public class DataAccessExceptionAssertTest {
     public DataAccessExceptionAssertTest() {}
 
     /**
-     * Test the message and thrown of {@link TestException}.<p>
+     * <p>Test the message and thrown of {@link TestException}.</p>
      */
     @Test
     public void assertExceptionContent()

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This listener is a chained version of {@link ActionListener}, as {@link ChainedAction} do.<p>
+ * <p>This listener is a chained version of {@link ActionListener}, as {@link ChainedAction} do.</p>
  *
  * This is a container type which contains multiple {@link ChainedActionListener}s
  * for generating of {@link ChainedActionListener#getBeforeAction} in intialized order
- * and of {@link ChainedActionListener#getAfterAction} in reversed order.<p>
+ * <p>and of {@link ChainedActionListener#getAfterAction} in reversed order.</p>
  *
- * This class would build {@link ChainedAction} lazily and as singleton instance.<p>
+ * <p>This class would build {@link ChainedAction} lazily and as singleton instance.</p>
  */
 public class ChainedActionListener extends ActionListener {
     private ActionListener[] chainedActionListeners;
@@ -20,7 +20,7 @@ public class ChainedActionListener extends ActionListener {
     private Action afterActions = null;
 
     /**
-     * Initialized ordered {@link ActionListener}s.<p>
+     * <p>Initialized ordered {@link ActionListener}s.</p>
      *
      * @param newChainedListeners The executed
      */
@@ -30,7 +30,7 @@ public class ChainedActionListener extends ActionListener {
     }
 
     /**
-     * Generates an {@link ChainedAction} which has order as same as initialized listeners.<p>
+     * <p>Generates an {@link ChainedAction} which has order as same as initialized listeners.</p>
      *
      * @return the initialized {@link Action}, or nothing get executed by return null
      */
@@ -53,7 +53,7 @@ public class ChainedActionListener extends ActionListener {
         return beforeActions;
     }
     /**
-     * Generates an {@link ChainedAction} which has reversed order coming from initialied listeners.<p>
+     * <p>Generates an {@link ChainedAction} which has reversed order coming from initialied listeners.</p>
      *
      * @return the initialized {@link Action}, or nothing get executed by return null
      */

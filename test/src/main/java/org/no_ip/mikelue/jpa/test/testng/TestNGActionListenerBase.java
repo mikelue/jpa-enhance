@@ -7,12 +7,12 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 
 /**
- * The base class for listener in any type of TestNG listener.<p>
+ * <p>The base class for listener in any type of TestNG listener.</p>
  *
  * This class also defines {@link #getContextObject()} to retrieve current context object for test framework.
  * For example, in TestNG, there are {@link ISuite}, {@link ITestContext}, or {@link ITestResult} are sent from TestNG.
  * Such object would be bound to {@link ThreadLocal thread} which is safe in multi-threaded testing.
- * <b>Sub-class is responsible for implementing {@link #getContextObject()} method.</b><p>
+ * <p><b>Sub-class is responsible for implementing {@link #getContextObject()} method.</b></p>
  *
  * @param <T> The type of context object
  */
@@ -22,7 +22,7 @@ public abstract class TestNGActionListenerBase<T> {
     protected TestNGActionListenerBase() {}
 
     /**
-     * Get the logger.<p>
+     * <p>Get the logger.</p>
      *
      * @return the logger with the name of class of instance
      */
@@ -32,7 +32,7 @@ public abstract class TestNGActionListenerBase<T> {
     }
 
     /**
-     * Gets the context object from thread-safe container.<p>
+     * <p>Gets the context object from thread-safe container.</p>
      *
      * @return The context object sent from TestNG
      */

@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Tests whether the context object is thread-safe or not.<p>
+ * <p>Tests whether the context object is thread-safe or not.</p>
  *
  * This test would be run in two-thread environment; the {@link MultiThreadMethodActionListenerTest#MultiThreadMethodListener} would
  * setup a semaphore(by incrementing reached threads) which perform output data until all threads has reached.
@@ -56,7 +56,7 @@ public class MultiThreadMethodActionListenerTest {
     }
 
     /**
-     * The listener used to process "MultiThread" events.<p>
+     * <p>The listener used to process "MultiThread" events.</p>
      */
     public static class MultiThreadMethodListener extends MethodActionListener {
         private ActionListener actionListener = new ActionListener() {

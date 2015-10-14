@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.springframework;
 import org.springframework.dao.DataAccessException;
 
 /**
- * This class is used to process exception from database.<p>
+ * This class is used to process exception from database.
  *
  * @see DataAccessException
  */
@@ -11,8 +11,8 @@ public class DataExceptionUtil {
     private DataExceptionUtil() {}
 
     /**
-     * This method would check out the {@link DataAccessException#getRootCause}
-     * whether containing particular message or not.<p>
+     * This method would check out whether or not the {@link DataAccessException#getRootCause}
+     * contains particular message.
      *
      * @param e - processed exception to extract message info
      * @param message - the message to check

@@ -14,7 +14,7 @@ public class TestActionListenerTest {
     public TestActionListenerTest() {}
 
     /**
-     * Test the {@link ITestListener#onStart} method, which should call the {@link ActionListener#executeBeforeAction()} method.<p>
+     * <p>Test the {@link ITestListener#onStart} method, which should call the {@link ActionListener#executeBeforeAction()} method.</p>
      */
     @Test
     public void onStart()
@@ -27,7 +27,7 @@ public class TestActionListenerTest {
         );
     }
     /**
-     * Test the {@link ITestListener#onFinish} method, which should call the {@link ActionListener#executeAfterAction()} method.<p>
+     * <p>Test the {@link ITestListener#onFinish} method, which should call the {@link ActionListener#executeAfterAction()} method.</p>
      */
     @Test
     public void onFinish()

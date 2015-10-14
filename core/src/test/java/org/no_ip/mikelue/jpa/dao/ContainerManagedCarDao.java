@@ -5,9 +5,6 @@ import org.no_ip.mikelue.jpa.model.Car;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 /**
  * This class is a test DAO object with container-managed environment.
  */

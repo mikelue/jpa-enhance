@@ -14,7 +14,7 @@ public class TestNGUtilTest {
     private ITestNGMethod mockMethod;
 
     /**
-     * Test the checking for belonging groups of method.<p>
+     * <p>Test the checking for belonging groups of method.</p>
      */
     @Test(dataProvider="IsMethodBelongGroups")
     public void isMethodBelongGroups(

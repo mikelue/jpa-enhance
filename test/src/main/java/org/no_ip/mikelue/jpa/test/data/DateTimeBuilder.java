@@ -8,11 +8,11 @@ import java.util.Calendar;
 import static java.util.Calendar.getInstance;
 
 /**
- * The utility is used for building date/timestamp by adding certain value at time unit.<p>
+ * The utility is used for building date/timestamp by adding certain value at time unit.
  *
- * This class would use {@link DateTimeUtil} to erase time precision when retrieve date/time value.<p>
+ * <p>This class would use {@link DateTimeUtil} to erase time precision when retrieve date/time value.</p>
  *
- * This class is non thread-safe.<p>
+ * <p>This class is non thread-safe.</p>
  */
 public class DateTimeBuilder {
     /**
@@ -73,7 +73,7 @@ public class DateTimeBuilder {
     private Calendar sourceCalendar = null;
 
     /**
-     * Initialize build with SQL {@link Date} object
+     * Initialize build with SQL {@link Date} object.
      *
      * @param sourceDate the source SQL date
      */
@@ -82,7 +82,7 @@ public class DateTimeBuilder {
         initCalendar(sourceDate);
     }
     /**
-     * Initialize build with SQL {@link Timestamp} object
+     * Initialize build with SQL {@link Timestamp} object.
      *
      * @param sourceTimestamp the source SQL date with time
      */
@@ -92,9 +92,9 @@ public class DateTimeBuilder {
     }
 
     /**
-     * Add specific number of time unit into date/time.<p>
+     * Add specific number of time unit into date/time.
      *
-     * Adding a negative number means calculating time in the past.
+     * <p>Adding a negative number means calculating time in the past.</p>
      *
      * @param dateTimeUnit the unit of added number
      * @param addedNumber the added number
@@ -130,7 +130,7 @@ public class DateTimeBuilder {
     }
 
     /**
-     * Get the result of computation in SQL {@link Date}.</p>
+     * <p>Get the result of computation in SQL {@link Date}.</p>
      *
      * @return the time portion would be erased
      *
@@ -141,7 +141,7 @@ public class DateTimeBuilder {
         return DateTimeUtil.convertToDate(sourceCalendar);
     }
     /**
-     * Get the result of computation in SQL {@link Timestamp}.</p>
+     * <p>Get the result of computation in SQL {@link Timestamp}.</p>
      *
      * @return the millisecond portion would be erased
      *

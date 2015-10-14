@@ -21,7 +21,7 @@ public class MethodActionListenerTest {
     public MethodActionListenerTest() {}
 
     /**
-     * Test the {@link IInvokedMethodListener2#beforeInvocation} method, which should call the {@link ActionListener#executeBeforeAction()} method.<p>
+     * <p>Test the {@link IInvokedMethodListener2#beforeInvocation} method, which should call the {@link ActionListener#executeBeforeAction()} method.</p>
      */
     @Test
     public void beforeInvocation()
@@ -34,7 +34,7 @@ public class MethodActionListenerTest {
         );
     }
     /**
-     * Test the {@link IInvokedMethodListener2#afterInvocation} method, which should call the {@link ActionListener#executeAfterAction()} method.<p>
+     * <p>Test the {@link IInvokedMethodListener2#afterInvocation} method, which should call the {@link ActionListener#executeAfterAction()} method.</p>
      */
     @Test
     public void afterInvocation()

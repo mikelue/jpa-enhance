@@ -11,7 +11,7 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
     public DbUnitBuilderTest() {}
 
 	/**
-	 * Tests the building of data(in transaction) while a error occurs.<p>
+	 * <p>Tests the building of data(in transaction) while a error occurs.</p>
 	 */
 	@Test(expectedExceptions=DatabaseUnitException.class, expectedExceptionsMessageRegExp=".*tt_person.*")
 	public void buildDataWithErrorInTransaction() throws DatabaseUnitException
@@ -34,8 +34,8 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
 			 * Assert that there is no data that can be inserted because of rollback of transaction
 			 */
 			Assert.assertEquals(
-				getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
-				0
+				getJdbcTmpl().queryForObject("SELECT COUNT(*) FROM tt_person", Integer.class),
+				new Integer(0)
 			);
 			// :~)
 
@@ -46,7 +46,7 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
 	}
 
     /**
-     * Tests building data(with HSQLDB, in a transaction).<p>
+     * <p>Tests building data(with HSQLDB, in a transaction).</p>
      */
     @Test
     public void buildData()
@@ -59,13 +59,13 @@ public class DbUnitBuilderTest extends AbstractDbUnitEnvTestBase {
         );
 
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
-            2
+            getJdbcTmpl().queryForObject("SELECT COUNT(*) FROM tt_person", Integer.class),
+			new Integer(2)
         );
     }
 
     /**
-     * Tests the callback for {@ink DbUnitConnectionConfigurer}.<p>
+     * <p>Tests the callback for {@ink DbUnitConnectionConfigurer}.</p>
      */
     @Test(dependsOnMethods="buildData")
     public void connectionConfigurer()

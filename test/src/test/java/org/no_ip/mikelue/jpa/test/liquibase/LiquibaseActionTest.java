@@ -1,6 +1,6 @@
 package org.no_ip.mikelue.jpa.test.liquibase;
 
-import org.no_ip.mikelue.jpa.test.DatabaseEnvUtil;
+import javax.sql.DataSource;
 
 import liquibase.Liquibase;
 import liquibase.resource.ClassLoaderResourceAccessor;
@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
-import javax.sql.DataSource;
+import org.no_ip.mikelue.jpa.test.DatabaseEnvUtil;
 
 public class LiquibaseActionTest {
     private JdbcTemplate jdbcTmpl;
@@ -18,10 +18,10 @@ public class LiquibaseActionTest {
     public LiquibaseActionTest() {}
 
     /**
-     * Test simple case for building schema.<p>
+     * <p>Test simple case for building schema.</p>
      *
      * Because this type is just a wrapper of its containing types,
-     * the completed testing is wrote in {@link LiquibaseBuilderTest}.<p>
+     * <p>the completed testing is wrote in {@link LiquibaseBuilderTest}.</p>
      */
     @Test
     public void buildSchema()
@@ -45,12 +45,13 @@ public class LiquibaseActionTest {
         action.executeAction();
 
         Assert.assertEquals(
-            jdbcTmpl.queryForInt(
+            jdbcTmpl.queryForObject(
                 " SELECT COUNT(TABLE_NAME)" +
                 " FROM INFORMATION_SCHEMA.TABLES" +
-                " WHERE TABLE_NAME = 'TT_SAMPLE_TABLE'"
+                " WHERE TABLE_NAME = 'TT_SAMPLE_TABLE'",
+				Integer.class
             ),
-            1
+            new Integer(1)
         );
     }
 

@@ -9,28 +9,28 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import java.util.Arrays;
 
 /**
- * The executor for {@link Liquibase#update}.<p>
+ * <p>The executor for {@link Liquibase#update}.</p>
  *
- * This class has some configurations to perform additional operations to database.<p>
+ * <p>This class has some configurations to perform additional operations to database.</p>
  *
- * The execution of this object: {@link #executeLiquibase}.<p>
+ * <p>The execution of this object: {@link #executeLiquibase}.</p>
  */
 public class UpdateSchemaExecutor implements LiquibaseExecutor {
     private Logger logger = LoggerFactory.getLogger(UpdateSchemaExecutor.class);
 
     /**
-     * The default number of changes is going to be updated.<p>
+     * <p>The default number of changes is going to be updated.</p>
      */
     public static final Integer ALL_CHANGES = null;
     /**
      * The [null] value and ""(empty string) value of context have
-     * differential behaviors in Liquibase. This is also the default value<p>
+     * <p>differential behaviors in Liquibase. This is also the default value</p>
      *
-     * This value is used to indicated [null] value in {@link Liquibase#update(String)}.<p>
+     * <p>This value is used to indicated [null] value in {@link Liquibase#update(String)}.</p>
      */
     public static final String[] NO_CONTEXTS = null;
     /**
-     * The default value for undetermined schemas for {@link Liquibase#dropAll}.<p>
+     * <p>The default value for undetermined schemas for {@link Liquibase#dropAll}.</p>
      */
     public static final String[] UNDETERMINED_SCHEMAS = null;
 
@@ -50,7 +50,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
     public UpdateSchemaExecutor() {}
 
     /**
-     * Set whether to drop the schemas first which comes from {@link #getSchemas}. <b>Default is "false".</b><p>
+     * <p>Set whether to drop the schemas first which comes from {@link #getSchemas}. <b>Default is "false".</b></p>
      *
      * @param newDropFirst drop the schemas first if value is "true"
      *
@@ -59,7 +59,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
      */
     public void setDropFirst(boolean newDropFirst) { this.dropFirst = newDropFirst; }
     /**
-     * Get whether to drop the schemas. <b>Default is "false"</b>.<p>
+     * <p>Get whether to drop the schemas. <b>Default is "false"</b>.</p>
      *
      * @return drop the schemas first if value is "true"
      *
@@ -69,7 +69,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
     public boolean getDropFirst() { return this.dropFirst; }
 
     /**
-     * Set the number of changes {@link #getSchemas} which is going to be {@link Liquibase#update updated}. <b>Default is {@link #ALL_CHANGES}</b><p>
+     * <p>Set the number of changes {@link #getSchemas} which is going to be {@link Liquibase#update updated}. <b>Default is {@link #ALL_CHANGES}</b></p>
      *
      * @param newChangesToApply The number of changes is going to be updated
      *
@@ -85,7 +85,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
         this.changesToApply = newChangesToApply;
     }
     /**
-     * Get the number of changes {@link #getSchemas} which is going to be {@link Liquibase#update updated}. <b>Default is {@link #ALL_CHANGES}</b><p>
+     * <p>Get the number of changes {@link #getSchemas} which is going to be {@link Liquibase#update updated}. <b>Default is {@link #ALL_CHANGES}</b></p>
      *
      * @return The number of changes or {@link #ALL_CHANGES} if it is the default value
      *
@@ -94,7 +94,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
 	public Integer getChangesToApply() { return this.changesToApply; }
 
     /**
-     * Set the contexts which is going to be {@link Liquibase#update updated}. <b>Default is {@link #NO_CONTEXTS}</b><p>
+     * <p>Set the contexts which is going to be {@link Liquibase#update updated}. <b>Default is {@link #NO_CONTEXTS}</b></p>
      *
      * @param newContexts The contexts is going to be updated
      *
@@ -102,7 +102,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
      */
     public void setContexts(String... newContexts) { this.contexts = newContexts; }
     /**
-     * Get the contexts which is going to be {@link Liquibase#update updated}. <b>Default is {@link #NO_CONTEXTS}</b><p>
+     * <p>Get the contexts which is going to be {@link Liquibase#update updated}. <b>Default is {@link #NO_CONTEXTS}</b></p>
      *
      * @return The contexts is going to be updated
      *
@@ -118,8 +118,8 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
     }
 
     /**
-     * Set the schemas which is going to be {@link Liquibase#dropAll dropped}, if {@link #getDropFirst} is "true".<p>
-     * <b>Default is {@link #UNDETERMINED_SCHEMAS}</b><p>
+     * <p>Set the schemas which is going to be {@link Liquibase#dropAll dropped}, if {@link #getDropFirst} is "true".</p>
+     * <p><b>Default is {@link #UNDETERMINED_SCHEMAS}</b></p>
      *
      * @param newSchemas The schemas is going to be dropped
      *
@@ -127,8 +127,8 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
      */
     public void setSchemas(String... newSchemas) { this.schemas = newSchemas; }
     /**
-     * Set the schemas which is going to be {@link Liquibase#dropAll dropped}, if {@link #getDropFirst} is "true".<p>
-     * <b>Default is {@link #UNDETERMINED_SCHEMAS}</b><p>
+     * <p>Set the schemas which is going to be {@link Liquibase#dropAll dropped}, if {@link #getDropFirst} is "true".</p>
+     * <p><b>Default is {@link #UNDETERMINED_SCHEMAS}</b></p>
      *
      * @return The schemas is going to be dropped
      *
@@ -144,7 +144,7 @@ public class UpdateSchemaExecutor implements LiquibaseExecutor {
     }
 
     /**
-     * Execute the update operation based on properties.<p>
+     * <p>Execute the update operation based on properties.</p>
      *
      * The execution of this method is as following list:
      * <ol>

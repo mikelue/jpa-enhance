@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.paging;
 import static org.apache.commons.lang3.Validate.isTrue;
 
 /**
- * 介面程式要求分頁所需提供的基本資料。<p>
+ * 介面程式要求分頁所需提供的基本資料.
  *
  * 本物件主要需要下列三項分頁需求資料
  * <ol>
@@ -12,11 +12,11 @@ import static org.apache.commons.lang3.Validate.isTrue;
  * 		<li>本頁後顯示頁數(預設為 0)</li>
  * </ol>
  *
- * 本物件需要提供「本頁後顯示頁數」，目的地提供資料庫查詢，
- * 可在 SQL 依此設定「最大回傳筆數」，讓資料庫有機會最佳化查詢。<p>
+ * <p>本物件需要提供「本頁後顯示頁數」，目的地提供資料庫查詢，
+ * 可在 SQL 依此設定「最大回傳筆數」，讓資料庫有機會最佳化查詢。</p>
  *
- * 因為有提供空白建構子 {@link #PagingRequestBean()}，每一個取得數字的方法，
- * 都可能傳回 -1，相依的類別要負責檢查，可用 {@link #checkValidPagingBean(PagingRequestBean)}。<p>
+ * <p>因為有提供空白建構子 {@link #PagingRequestBean()}，每一個取得數字的方法，
+ * 都可能傳回 -1，相依的類別要負責檢查，可用 {@link #checkValidPagingBean(PagingRequestBean)}。</p>
  */
 public class PagingRequestBean {
 	/**
@@ -158,9 +158,9 @@ public class PagingRequestBean {
 	public int getPageNumberAfterTarget() { return this.pageNumberAfterTarget; }
 
 	/**
-	 * 判斷請求分頁是否還有前一頁，用來判斷是否需要執行第二次查詢。<p>
+	 * 判斷請求分頁是否還有前一頁，用來判斷是否需要執行第二次查詢.
 	 *
-	 * {@link #getPageNumberOfTarget()} 是否大於 1
+	 * <p>{@link #getPageNumberOfTarget()} 是否大於 1</p>
 	 *
 	 * @return 若有，傳回 true
 	 */

@@ -13,9 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This is an context class which is used to execute the logic defined in {@link OpDataSet}.<p>
+ * This is an context class which is used to execute the logic defined in {@link OpDataSet}.
  *
- * Client should provides {@link DbUnitBuilder} and {@link DataSetBuilder} to construct this object.<p>
+ * <p>Client should provides {@link DbUnitBuilder} and {@link DataSetBuilder} to construct this object.</p>
  *
  * @see OpDataSet
  * @see DataSetOperation
@@ -27,7 +27,7 @@ public class AnnotationDbUnitContext {
     private DataSetBuilder dataSetBuilder;
 
     /**
-     * Initialize this object with fundamental environment.<p>
+     * Initialize this object with fundamental environment.
      *
      * @param newDbUnitBuilder The DbUnit environment
      * @param newDataSetBuilder The builder for generating {@link IDataSet}
@@ -39,7 +39,8 @@ public class AnnotationDbUnitContext {
     }
     /**
      * Initialize this object with fundamental environment.
-     * This constructor would use {@link SimpleDataSetBuilder} as default {@link DataSetBuilder}.<p>
+	 *
+     * <p>This constructor would use {@link SimpleDataSetBuilder} as default {@link DataSetBuilder}.</p>
      *
      * @param newDbUnitBuilder The DbUnit environment
      */
@@ -49,9 +50,9 @@ public class AnnotationDbUnitContext {
     }
 
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.
      *
-     * This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
      * @param opDataSet The defining object for operation
      */
@@ -77,9 +78,9 @@ public class AnnotationDbUnitContext {
         multiDataSetsListener.executeBeforeAction();
     }
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.
      *
-     * This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
      * @param opDataSet The defining object for operation
      */
@@ -106,7 +107,7 @@ public class AnnotationDbUnitContext {
     }
 
     /**
-     * Gets the {@link DbUnitBuilder} for executing {@link DataSetOperation operation}.<p>
+     * Gets the {@link DbUnitBuilder} for executing {@link DataSetOperation operation}.
      *
      * @return The builder which was sent from {@link #AnnotationDbUnitContext(DbUnitBuilder, DataSetBuilder) constructor}
      *
@@ -117,7 +118,7 @@ public class AnnotationDbUnitContext {
         return dbUnitBuilder;
     }
     /**
-     * Gets the {@link DataSetBuilder} for generating {@link IDataSet}.<p>
+     * Gets the {@link DataSetBuilder} for generating {@link IDataSet}.
      *
      * @return The builder which was sent from {@link #AnnotationDbUnitContext(DbUnitBuilder, DataSetBuilder) constructor}
      */

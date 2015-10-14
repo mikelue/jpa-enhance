@@ -6,7 +6,6 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.Liquibase;
 import liquibase.resource.ClassLoaderResourceAccessor;
-import org.hsqldb.jdbc.JDBCDataSourceFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,7 +21,7 @@ public class LiquibaseBuilderTest {
     public LiquibaseBuilderTest() {}
 
     /**
-     * Test build schema(would drop schema first).<p>
+     * <p>Test build schema(would drop schema first).</p>
      */
     @Test
     public void buildSchema()
@@ -44,12 +43,13 @@ public class LiquibaseBuilderTest {
         );
 
         Assert.assertEquals(
-            jdbcTmpl.queryForInt(
+            jdbcTmpl.queryForObject(
                 " SELECT COUNT(TABLE_NAME)" +
                 " FROM INFORMATION_SCHEMA.TABLES" +
-                " WHERE TABLE_NAME = 'TT_SAMPLE_TABLE'"
+                " WHERE TABLE_NAME = 'TT_SAMPLE_TABLE'",
+				Integer.class
             ),
-            1
+            new Integer(1)
         );
     }
 

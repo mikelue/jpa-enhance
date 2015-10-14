@@ -1,7 +1,6 @@
 package org.no_ip.mikelue.jpa.dao;
 
 import org.no_ip.mikelue.jpa.model.Person;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -34,9 +33,12 @@ public class AppManagedTypedDaoFacadeBaseTest {
             findPerson(FIRST_ID)
         );
 
+		testDao.beginTransaction();
         Assert.assertNotNull(
             testDao.find(FIRST_ID, LockModeType.PESSIMISTIC_WRITE)
         );
+		testDao.commitTransaction();
+
         testDao.getEntityManager().close();
     }
     @Test
@@ -151,7 +153,7 @@ public class AppManagedTypedDaoFacadeBaseTest {
 /**
  * As application-managed DAO object for testing, this object is stateful.<p>
  *
- * <b>*DO NOT USE THIS CLASS IN MULTI-THREADS ENVIRONMENT*</b>
+ * <strong>*DO NOT USE THIS CLASS IN MULTI-THREADS ENVIRONMENT*</strong>
  */
 class AppManagedPersonDao extends AbstractTypedDaoFacadeBase<Person, Integer> {
     private EntityManagerFactory emf = null;

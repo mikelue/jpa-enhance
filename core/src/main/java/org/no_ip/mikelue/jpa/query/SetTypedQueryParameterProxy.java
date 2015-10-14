@@ -3,9 +3,9 @@ package org.no_ip.mikelue.jpa.query;
 import javax.persistence.TypedQuery;
 
 /**
- * 支援 TypedQuery 的參數用工具類別, 包含一個 TypedQuery 物件<p>
+ * 支援 TypedQuery 的參數用工具類別, 包含一個 TypedQuery 物件.
  *
- * 本類別為 Not Thread-Safe
+ * 本類別為 Not Thread-Safe.
  */
 public class SetTypedQueryParameterProxy<T> extends SetQueryParameterProxy {
 	/**
@@ -15,6 +15,8 @@ public class SetTypedQueryParameterProxy<T> extends SetQueryParameterProxy {
 
 	/**
 	 * 提供被 Delegate 的 TypedQuery 物件
+	 *
+	 * @param newEnclosedTypedQuery The query to be enclosed
 	 */
 	public SetTypedQueryParameterProxy(TypedQuery<T> newEnclosedTypedQuery)
 	{
@@ -23,7 +25,7 @@ public class SetTypedQueryParameterProxy<T> extends SetQueryParameterProxy {
 	}
 
 	/**
-	 * 取得所包含的 TypedQuery 物件
+	 * {@inheritDoc}
 	 */
 	public TypedQuery<T> getEnclosedTypedQuery()
 	{
@@ -31,7 +33,7 @@ public class SetTypedQueryParameterProxy<T> extends SetQueryParameterProxy {
 	}
 
 	/**
-	 * 若 value 不是 Null，才會設定 enclosedQuery 的 Parameter
+	 * {@inheritDoc}
 	 */
 	@Override
 	public SetTypedQueryParameterProxy<T> setParameterIfNotNull(String name, Object value)
@@ -40,8 +42,7 @@ public class SetTypedQueryParameterProxy<T> extends SetQueryParameterProxy {
 		return this;
 	}
 	/**
-	 * 若 value 不是 Null，設定 enclosedQuery 的 Positional Parameter，
-	 * 會自動增加 Parameter 序號
+	 * {@inheritDoc}
 	 */
 	@Override
 	public SetTypedQueryParameterProxy<T> setAutoPositionParameterIfNotNull(Object value)

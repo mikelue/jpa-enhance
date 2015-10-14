@@ -1,13 +1,13 @@
 package org.no_ip.mikelue.jpa.test.liquibase;
 
 /**
- * The wrapper exception while running from {@link LiquibaseBuilder#runExecutor(LiquibaseExecutor)}.<p>
+ * The wrapper exception while running from {@link LiquibaseBuilder#runExecutor(LiquibaseExecutor)}.
  */
 public class LiquibaseExecuteException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Construct this class with {@link Exception cause exception}.<p>
+     * Construct this class with {@link Exception cause exception}.
      *
      * @param builder The running builider
      * @param e The causing exception

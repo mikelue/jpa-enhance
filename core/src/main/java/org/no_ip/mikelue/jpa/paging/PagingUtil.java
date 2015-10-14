@@ -6,9 +6,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- * 分頁相關工具方法。<p>
+ * 分頁相關工具方法.
  *
- * 目前支援 {@link TwoPhasePagingRunner} 所提供的兩階段分頁策略
+ * <p>目前支援 {@link TwoPhasePagingRunner} 所提供的兩階段分頁策略</p>
  */
 public class PagingUtil {
 	private PagingUtil() {}
@@ -16,6 +16,7 @@ public class PagingUtil {
 	/**
 	 * 將 List 資料分頁成所設定的內容。
 	 *
+	 * @param <T> 回傳的 List Generic Type
 	 * @param srcList 來源資料
 	 * @param pagingResultBean 分頁設定
 	 *
@@ -33,6 +34,7 @@ public class PagingUtil {
 	/**
 	 * 將 List 資料分頁成所設定的內容。
 	 *
+	 * @param <T> 回傳的 List Generic Type
 	 * @param srcList 來源資料
 	 * @param pagingResultBean 分頁設定
 	 * @param fetchPhase 查詢的策略，若為 null，預設策略為 {@link FetchPhase#FirstFetch}
@@ -50,7 +52,7 @@ public class PagingUtil {
 	}
 
 	/**
-	 * 執行查詢，並取得分頁設定的資料，只會執行一次查詢
+	 * 執行查詢，並取得分頁設定的資料，只會執行一次查詢.
 	 *
 	 * @param query 要執行的查詢 JPA 物件，不得為 null
 	 * @param pagingResultBean 分頁設定，不得為 null
@@ -68,9 +70,9 @@ public class PagingUtil {
 		);
 	}
 	/**
-	 * 執行查詢，並取得分頁設定的資料。<p>
+	 * 執行查詢，並取得分頁設定的資料.
 	 *
-	 * 參數 fetchPhase 若為 {@link FetchPhase#LastFetch}，若第一次查詢不到資料，會執行第二次查詢(從第一筆到原要求頁碼的前一筆)
+	 * <p>參數 fetchPhase 若為 {@link FetchPhase#LastFetch}，若第一次查詢不到資料，會執行第二次查詢(從第一筆到原要求頁碼的前一筆)</p>
 	 *
 	 * @param query 要執行的查詢 JPA 物件，不得為 null
 	 * @param pagingResultBean 分頁設定，不得為 null
@@ -89,8 +91,9 @@ public class PagingUtil {
 		);
 	}
 	/**
-	 * 執行查詢，並取得分頁設定的資料，只會執行一次查詢
+	 * 執行查詢，並取得分頁設定的資料，只會執行一次查詢.
 	 *
+	 * @param <T> 回傳的 List Generic Type
 	 * @param typedQuery 要執行的查詢 JPA 物件，不得為 null
 	 * @param pagingResultBean 分頁設定，不得為 null
 	 *
@@ -106,10 +109,11 @@ public class PagingUtil {
 		);
 	}
 	/**
-	 * 執行查詢，並取得分頁設定的資料。<p>
+	 * 執行查詢，並取得分頁設定的資料.
 	 *
-	 * 參數 fetchPhase 若為 {@link FetchPhase#LastFetch}，若第一次查詢不到資料，會執行第二次查詢(從第一筆到原要求頁碼的前一筆)
+	 * <p>參數 fetchPhase 若為 {@link FetchPhase#LastFetch}，若第一次查詢不到資料，會執行第二次查詢(從第一筆到原要求頁碼的前一筆)</p>
 	 *
+	 * @param <T> 回傳的 List Generic Type
 	 * @param typedQuery 要執行的查詢 JPA 物件，不得為 null
 	 * @param pagingResultBean 分頁設定，不得為 null
 	 * @param fetchPhase 查詢的策略，若為 null，預設策略為 {@link FetchPhase#FirstFetch}
@@ -128,7 +132,7 @@ public class PagingUtil {
 }
 
 /**
- * {@link Query} 分頁查詢物件
+ * {@link Query} 分頁查詢物件.
  */
 class QueryPagingFilter implements TwoPhasePagingFilter<Object> {
 	private Query query;

@@ -4,14 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The container class which has chained action to be executed in order.<p>
+ * <p>The container class which has chained action to be executed in order.</p>
  */
 public class ChainedAction implements Action {
     private Logger logger = LoggerFactory.getLogger(ChainedAction.class);
     private Action[] chainedActions;
 
     /**
-     * Initialize this object by providing array of {@link Action}.<p>
+     * <p>Initialize this object by providing array of {@link Action}.</p>
      *
      * @param newChainedActions The ordered {@link Action}s are going to be executed
      */
@@ -22,7 +22,7 @@ public class ChainedAction implements Action {
     }
 
     /**
-     * Execute actions in initialized order.<p>
+     * <p>Execute actions in initialized order.</p>
      *
      * @throws ExecuteActionException The wrapper exception thrown from executor
      */

@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.query;
 import java.util.List;
 
 /**
- * Client implements this interface to execute incremental query processing.<p>
+ * Client implements this interface to execute incremental query processing.
  *
  * @see QueryUtil#getListResultByIncrementalQuery(ListResultQueryAction, ListResultQueryAction, ListResultQueryAction...)
  * @see TypedListResultQueryAction

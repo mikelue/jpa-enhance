@@ -14,10 +14,10 @@ import javax.sql.DataSource;
 
 /**
  * This builder object is used to initialized environment of {@link Liquibase} and
- * to execute {@link Liquibase} in IoC.<p>
+ * to execute {@link Liquibase} in IoC.
  *
- * Supporting with {@link DataSource}, client could using this builder to execute
- * actions of {@link Liquibase} by providing implementation of {@link LiquibaseExecutor}.<p>
+ * <p>Supporting with {@link DataSource}, client could using this builder to execute
+ * actions of {@link Liquibase} by providing implementation of {@link LiquibaseExecutor}.</p>
  *
  * @see #runExecutor
  * @see Liquibase
@@ -27,7 +27,7 @@ public class LiquibaseBuilder {
 
     /**
      * This method builds a {@link LiquibaseBuilder} as same as {@link Liquibase#Liquibase},
-     * but the connection of database is constructured by {@link DataSource}.<p>
+     * but the connection of database is constructured by {@link DataSource}.
      *
      * @param newChangeLogFile The path of file for Liquibase change file
      * @param newResourceAccessor The object for locating Liquibase change files
@@ -56,7 +56,7 @@ public class LiquibaseBuilder {
     }
 
     /**
-     * Get the path of change log file.<p>
+     * Get the path of change log file.
      *
      * @return The path of change log file comes from {@link #build}
      */
@@ -67,12 +67,12 @@ public class LiquibaseBuilder {
 
     /**
      * This method would build new {@link Liquibase} object and sent it into
-     * {@link LiquibaseExecutor#executeLiquibase} method.<p>
+     * {@link LiquibaseExecutor#executeLiquibase} method.
      *
-     * <b style="color:red">
+     * <p><b style="color:red">
      * This method would release locks forcely before and after the running of executor.
      * Do not use this method to production database.
-     * </b><p>
+     * </b></p>
      *
      * @param liquibaseExecutor The {@link LiquibaseExecutor} is going to be executed
      *

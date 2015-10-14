@@ -1,198 +1,123 @@
 package org.no_ip.mikelue.jpa.test.testng.validation;
 
-import java.lang.annotation.Annotation;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
-import javax.validation.constraints.AssertFalse;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.metadata.ConstraintDescriptor;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
-import mockit.Mock;
-import mockit.Mocked;
-import mockit.MockUp;
-import mockit.NonStrictExpectations;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ValidationAssertTest {
-	@Mocked
-	private Set<ConstraintViolation<Object>> mockViolations;
-	@Mocked
-	private Iterator<ConstraintViolation<Object>> mockIterator;
-	@Mocked
-	private ConstraintViolation<Object> mockViolation;
-	@Mocked
-	private ConstraintDescriptor<?> mockConstraintDescriptor;
+	private Validator validator = Validation
+		.buildDefaultValidatorFactory()
+		.getValidator();
 
 	public ValidationAssertTest() {}
 
+	private static class SampleBeanForValidation {
+		@Max(10)
+		int max10;
+		@Min(10)
+		int min10;
+	}
+
 	/**
-	 * Tests the successful assertion of sole violation.<p>
+	 * Tests the successful assertion of sole violation.
 	 */
 	@Test
 	public void assertViolationAsSuccess()
 	{
-		prepareMockSoleViolations(1);
+		Set<ConstraintViolation<SampleBeanForValidation>> violations =
+			validator.validateValue(SampleBeanForValidation.class, "max10", 11);
 
 		ValidationAssert.assertViolation(
-			mockViolations, AssertTrue.class
+			violations, Max.class
 		);
 	}
 
 	/**
-	 * Tests throwing error of wrong type of violation.<p>
+	 * Tests throwing error of wrong type of violation.
 	 */
 	@Test(expectedExceptions=AssertionError.class)
 	public void assertViolationWithWrongTypeOfViolations()
 	{
-		prepareMockSoleViolations(1);
-
-		new NonStrictExpectations()
-		{
-			AssertFalse mockAnnotation;
-
-			{
-				mockConstraintDescriptor.getAnnotation();
-				result = mockAnnotation;
-			}
-		};
+		Set<ConstraintViolation<SampleBeanForValidation>> violations =
+			validator.validateValue(SampleBeanForValidation.class, "max10", 11);
 
 		ValidationAssert.assertViolation(
-			mockViolations, AssertTrue.class
+			violations, AssertTrue.class
 		);
 	}
 
 	/**
-	 * Tests throwing error of assertion for wrong number of violations.<p>
+	 * Tests throwing error of assertion for wrong number of violations.
 	 */
 	@Test(dataProvider="AssertViolationWithWrongNumberOfViolations", expectedExceptions=AssertionError.class)
-	public void assertViolationWithWrongNumberOfViolations(int numberOfViolations)
+	public void assertViolationWithWrongNumberOfViolations(int sampleValueOfMax10, int sampleValueOfMin10)
 	{
-		prepareMockSoleViolations(numberOfViolations);
+		SampleBeanForValidation sampleBean = new SampleBeanForValidation();
+		sampleBean.max10 = sampleValueOfMax10;
+		sampleBean.min10 = sampleValueOfMin10;
+
+		Set<ConstraintViolation<SampleBeanForValidation>> violations =
+			validator.validate(sampleBean);
 
 		ValidationAssert.assertViolation(
-			mockViolations, AssertTrue.class
+			violations, AssertTrue.class
 		);
 	}
 	@DataProvider(name="AssertViolationWithWrongNumberOfViolations")
 	private Object[][] getAssertViolationWithWrongNumberOfViolations()
 	{
 		return new Object[][] {
-			{ 2 },
-			{ 0 }
+			{ 11, 9 }, // Two violations
+			{ 10, 10 } // No violation
 		};
 	}
 
 	/**
-	 * Tests the successful assertion of multiple violations.<p>
+	 * Tests the successful assertion of multiple violations.
 	 */
 	@Test
 	public void assertInViolationsAsSuccess()
 	{
-		new NonStrictExpectations()
-		{
-			AssertTrue mockAnnotation;
-
-			{
-				mockViolation.getConstraintDescriptor();
-				result = mockConstraintDescriptor;
-
-				mockConstraintDescriptor.getAnnotation();
-				result = mockAnnotation;
-			}
-		};
-
-		Set<ConstraintViolation<Object>> testViolations = new HashSet<ConstraintViolation<Object>>(1);
-		testViolations.add(mockViolation);
+		Set<ConstraintViolation<SampleBeanForValidation>> testViolations =
+			validator.validateValue(SampleBeanForValidation.class, "max10", 11);
 
 		ValidationAssert.assertInViolations(
-			testViolations, AssertTrue.class
+			testViolations, Max.class
 		);
 	}
 
 	/**
-	 * Tests the failure assertion of no violation.<p>
+	 * Tests the failure assertion of no violation.
 	 */
 	@Test(expectedExceptions=AssertionError.class)
 	public void assertInViolationsWithNoViolation()
 	{
-		Set<ConstraintViolation<Object>> testViolations = new HashSet<ConstraintViolation<Object>>(0);
+		Set<ConstraintViolation<SampleBeanForValidation>> testViolations =
+			validator.validateValue(SampleBeanForValidation.class, "max10", 10);
 
 		ValidationAssert.assertInViolations(
-			testViolations, AssertTrue.class
+			testViolations, Max.class
 		);
 	}
 
 	/**
-	 * Tests the failure assertion of wrong type of violations.<p>
+	 * Tests the failure assertion of wrong type of violations.
 	 */
 	@Test(expectedExceptions=AssertionError.class)
 	public void assertInViolationsWithWrongTypeofViolations()
 	{
-		Set<ConstraintViolation<Object>> testViolations = new HashSet<ConstraintViolation<Object>>(2);
-		testViolations.add(buildMockViolation());
-		testViolations.add(buildMockViolation());
+		Set<ConstraintViolation<SampleBeanForValidation>> testViolations =
+			validator.validateValue(SampleBeanForValidation.class, "max10", 11);
 
 		ValidationAssert.assertInViolations(
 			testViolations, AssertTrue.class
 		);
-	}
-	private ConstraintViolation<Object> buildMockViolation()
-	{
-		/**
-		 * Builds the wrong type of violation
-		 */
-		new NonStrictExpectations()
-		{
-			AssertFalse mockAnnotation;
-
-			{
-				mockConstraintDescriptor.getAnnotation();
-				result = mockAnnotation;
-			}
-		};
-		// :~)
-
-		return new MockUp<ConstraintViolation<Object>>() {
-			@Mock
-			public ConstraintDescriptor<?> getConstraintDescriptor()
-			{
-				return mockConstraintDescriptor;
-			}
-		}
-			.getMockInstance();
-	}
-
-	private void prepareMockSoleViolations(
-		final int numberOfViolations
-	) {
-		/**
-		 * Simulate the success of assertion for sole violation
-		 */
-		new NonStrictExpectations()
-		{
-			AssertTrue mockAnnotation;
-
-			{
-				mockViolations.size();
-				result = numberOfViolations;
-
-				mockViolations.iterator();
-				result = mockIterator;
-
-				mockIterator.next();
-				result = mockViolation;
-
-				mockViolation.getConstraintDescriptor();
-				result = mockConstraintDescriptor;
-
-				mockConstraintDescriptor.getAnnotation();
-				result = mockAnnotation;
-			}
-		};
-		// :~)
 	}
 }

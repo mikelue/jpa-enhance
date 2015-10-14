@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The container type which could be execute a {@link LiquibaseExecutor}
- * in predefined environment.<p>
+ * in predefined environment.
  *
- * The goal of this type is to provide a single entry to execute
- * an "<b>action</b>" of Liquibase in convenient way.<p>
+ * <p>The goal of this type is to provide a single entry to execute
+ * an "<b>action</b>" of Liquibase in convenient way.</p>
  *
- * The {@link #executeAction()} method is used to execute {@link #getLiquibaseExecutor()} by {@link #getLiquibaseBuilder()}.<p>
+ * <p>The {@link #executeAction()} method is used to execute {@link #getLiquibaseExecutor()} by {@link #getLiquibaseBuilder()}.</p>
  */
 public class LiquibaseAction implements Action {
     private Logger logger = LoggerFactory.getLogger(LiquibaseAction.class);
@@ -20,7 +20,7 @@ public class LiquibaseAction implements Action {
     private LiquibaseExecutor executor;
 
     /**
-     * Constructs this object with necessary properties.<p>
+     * Constructs this object with necessary properties.
      *
      * @param newLiquibaseBuilder The builder for running {@link LiquibaseExecutor}
      * @param newLiquibaseExecutor The executor gotten called by {@link LiquibaseBuilder}
@@ -37,7 +37,7 @@ public class LiquibaseAction implements Action {
     }
 
     /**
-     * Gets the builder contained by this object.<p>
+     * Gets the builder contained by this object.
      *
      * @return The builder to run {@link #getLiquibaseExecutor()}
      */
@@ -46,7 +46,7 @@ public class LiquibaseAction implements Action {
         return builder;
     }
     /**
-     * Gets the executor of Liquibase.<p>
+     * Gets the executor of Liquibase.
      *
      * @return The executor which is going to be executed by {@link #getLiquibaseBuilder()}
      */
@@ -56,7 +56,7 @@ public class LiquibaseAction implements Action {
     }
 
     /**
-     * Executes {@link #getLiquibaseExecutor()} by {@link #getLiquibaseBuilder()}.<p>
+     * Executes {@link #getLiquibaseExecutor()} by {@link #getLiquibaseBuilder()}.
      *
      * @throws LiquibaseActionException The thrown exception if there is an error when executing action
      */

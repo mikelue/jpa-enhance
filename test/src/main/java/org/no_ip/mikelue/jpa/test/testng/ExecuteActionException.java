@@ -4,7 +4,7 @@ import org.testng.TestNGException;
 
 /**
  * This class is a type of {@link TestNGException} which contains information about
- * type of {@link Action}.<p>
+ * <p>type of {@link Action}.</p>
  *
  * @see Action#executeAction
  */

@@ -13,9 +13,9 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 /**
- * This bean <b>must be managed in Spring environment</b>.<p>
+ * <p>This bean <b>must be managed in Spring environment</b>.</p>
  *
- * The {@link YamlDataSet} would be initialized after this bean has been initialized.<p>
+ * <p>The {@link YamlDataSet} would be initialized after this bean has been initialized.</p>
  */
 public class ResourceYamlDataSet extends AbstractDataSet {
     @Inject
@@ -30,7 +30,7 @@ public class ResourceYamlDataSet extends AbstractDataSet {
     }
 
     /**
-     * This method would be delegated to {@link YamlDataSet}.<p>
+     * <p>This method would be delegated to {@link YamlDataSet}.</p>
      */
     @Override
     protected ITableIterator createIterator(boolean reversed)

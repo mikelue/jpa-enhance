@@ -11,7 +11,7 @@ public class ChainedActionTest {
     public ChainedActionTest() {}
 
     /**
-     * Test the chained execution for {@link Action}.<p>
+     * <p>Test the chained execution for {@link Action}.</p>
      */
     @Test
     public void executeAction()

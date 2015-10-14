@@ -8,11 +8,11 @@ import org.testng.ISuiteListener;
 
 /**
  * The {@link ISuiteListener} for executing {@link ActionListener#executeBeforeAction} and
- * {@link ActionListener#executeAfterAction} in {@link #onStart} and {@link #onFinish}.<p>
+ * <p>{@link ActionListener#executeAfterAction} in {@link #onStart} and {@link #onFinish}.</p>
  *
- * This listener should be inherited by sub-class.<p>
+ * <p>This listener should be inherited by sub-class.</p>
  * The sub-class should implement {@link #buildActionListener} to provide {@link ActionListener} used in
- * this listener.<p>
+ * <p>this listener.</p>
  *
  * @see ActionListener
  */
@@ -22,7 +22,7 @@ public abstract class SuiteActionListener extends TestNGActionListenerBase<ISuit
     protected SuiteActionListener() {}
 
     /**
-     * This method would execute {@link ActionListener#executeBeforeAction} comes from {@link #buildActionListener()}.<p>
+     * <p>This method would execute {@link ActionListener#executeBeforeAction} comes from {@link #buildActionListener()}.</p>
      *
      * @param suite The containing test suite
      */
@@ -35,7 +35,7 @@ public abstract class SuiteActionListener extends TestNGActionListenerBase<ISuit
     }
 
     /**
-     * This method would execute {@link ActionListener#executeAfterAction} comes from {@link #buildActionListener()}.<p>
+     * <p>This method would execute {@link ActionListener#executeAfterAction} comes from {@link #buildActionListener()}.</p>
      *
      * @param suite The containing test suite
      */
@@ -48,7 +48,7 @@ public abstract class SuiteActionListener extends TestNGActionListenerBase<ISuit
     }
 
     /**
-     * Implements the retrieving for {@link ISuite} object in TestNG context.<p>
+     * <p>Implements the retrieving for {@link ISuite} object in TestNG context.</p>
      *
      * @return Current {@link ISuite} object in thread.
      */

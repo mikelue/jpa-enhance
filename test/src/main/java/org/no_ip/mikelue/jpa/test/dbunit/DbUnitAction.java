@@ -9,12 +9,12 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The container type which could be execute a {@link DatabaseOperation}
- * in predefined environment.<p>
+ * in predefined environment.
  *
- * The goal of this type is to provide a single entry to execute
- * an "<b>action</b>" of DbUnit dataset in convenient way.<p>
+ * <p>The goal of this type is to provide a single entry to execute
+ * an "<b>action</b>" of DbUnit dataset in convenient way.</p>
  *
- * The {@link #executeAction()} method is used to execute {@link #getDbUnitOperation()} by {@link #getDbUnitBuilder()}.<p>
+ * <p>The {@link #executeAction()} method is used to execute {@link #getDbUnitOperation()} by {@link #getDbUnitBuilder()}.</p>
  */
 public class DbUnitAction implements Action {
     private Logger logger = LoggerFactory.getLogger(DbUnitAction.class);
@@ -23,7 +23,7 @@ public class DbUnitAction implements Action {
     private IDataSet dataset;
 
     /**
-     * Constructs this object with necessary properties.<p>
+     * Constructs this object with necessary properties.
      *
      * @param newDbUnitBuilder The builder for running {@link DatabaseOperation}
      * @param newDatabaseOperation The executor gotten called by {@link DbUnitBuilder}
@@ -44,7 +44,7 @@ public class DbUnitAction implements Action {
     }
 
     /**
-     * Gets the builder contained by this object.<p>
+     * Gets the builder contained by this object.
      *
      * @return The builder to run {@link #getDbUnitOperation()}
      */
@@ -53,7 +53,7 @@ public class DbUnitAction implements Action {
         return builder;
     }
     /**
-     * Gets the operation of DBUnit.<p>
+     * Gets the operation of DBUnit.
      *
      * @return The operation which is going to be executed by {@link #getDbUnitBuilder()}
      */
@@ -63,7 +63,7 @@ public class DbUnitAction implements Action {
     }
 
     /**
-     * Gets the {@link IDataSet} for operating.<p>
+     * Gets the {@link IDataSet} for operating.
      *
      * @return The dataset which is going to operated
      */
@@ -73,7 +73,7 @@ public class DbUnitAction implements Action {
     }
 
     /**
-     * Executes {@link #getDbUnitOperation()} by {@link #getDbUnitBuilder()}.<p>
+     * Executes {@link #getDbUnitOperation()} by {@link #getDbUnitBuilder()}.
      *
      * @throws DbUnitActionException The thrown exception if there is an error when executing action
      */

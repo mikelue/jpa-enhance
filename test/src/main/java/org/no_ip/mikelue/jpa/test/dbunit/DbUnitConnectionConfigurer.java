@@ -7,14 +7,14 @@ import javax.sql.DataSource;
 
 /**
  * This interface is implmented by client who wants to configure {@link IDatabaseConnection}
- * before executing database operation.<p>
+ * before executing database operation.
  *
  * @see DbUnitBuilder#build(DataSource, IDataTypeFactory, DbUnitConnectionConfigurer)
  */
 public interface DbUnitConnectionConfigurer {
     /**
      * This method gets called with an initialized connection which
-     * client needs to setup.<p>
+     * client needs to setup.
      *
      * @param conn the initialized object of connection
      *

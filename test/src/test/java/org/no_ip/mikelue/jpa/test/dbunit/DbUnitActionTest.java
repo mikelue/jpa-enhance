@@ -8,10 +8,10 @@ public class DbUnitActionTest extends AbstractDbUnitEnvTestBase {
     public DbUnitActionTest() {}
 
     /**
-     * Test simple case for run test of DBUnit.<p>
+     * <p>Test simple case for run test of DBUnit.</p>
      *
      * Because this type is just a wrapper of its containing types,
-     * the completed testing is wrote in {@link DbUnitBuilderTest}.<p>
+     * <p>the completed testing is wrote in {@link DbUnitBuilderTest}.</p>
      */
     @Test
     public void buildData()
@@ -20,8 +20,8 @@ public class DbUnitActionTest extends AbstractDbUnitEnvTestBase {
         action.executeAction();
 
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt("SELECT COUNT(*) FROM tt_person"),
-            2
+            getJdbcTmpl().queryForObject("SELECT COUNT(*) FROM tt_person", Integer.class),
+            new Integer(2)
         );
     }
 }

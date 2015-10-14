@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.no_ip.mikelue.jpa.springframework.DataExceptionUtil;
 
 /**
- * This assert class is used to assert content of {@link DataAccessException}.<p>
+ * <p>This assert class is used to assert content of {@link DataAccessException}.</p>
  */
 public class DataAccessExceptionAssert {
     private static Logger logger = LoggerFactory.getLogger(DataAccessExceptionAssert.class);

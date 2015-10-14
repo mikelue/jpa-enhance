@@ -12,21 +12,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.no-ip.mikelue.jpa</groupId>
+        <groupId>guru.mikelue.jpa</groupId>
         <artifactId>parent</artifactId>
-		<version>1.1.0</version>
+		<version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>test</artifactId>
     <name>Testing library for JPA</name>
-	<version>1.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
         <!-- Version definitions -->
-        <version.dbunit>2.4.9</version.dbunit>
-        <version.snakeyaml>1.12</version.snakeyaml>
+        <version.dbunit>2.5.1</version.dbunit>
+        <version.snakeyaml>1.16</version.snakeyaml>
         <!-- :~) -->
 
         <!-- Test environment for database -->
@@ -47,9 +46,9 @@
             <artifactId>testng</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.no-ip.mikelue.jpa</groupId>
+            <groupId>guru.mikelue.jpa</groupId>
             <artifactId>core</artifactId>
-			<version>${version.project}</version>
+			<version>${project.version}</version>
         </dependency>
 
         <!-- Dependency Libraries -->
@@ -94,12 +93,12 @@
         <!-- Spring Frameworks(Optional) -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
+            <artifactId>spring-context</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
             <optional>true</optional>
         </dependency>
 		<dependency>
@@ -125,6 +124,26 @@
             <artifactId>cglib</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+            <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+            <scope>test</scope>
+		</dependency>
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<scope>test</scope>
+			</dependency>
         <!-- :~) -->
 
         <!--
@@ -156,20 +175,27 @@
         <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
 			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <links>
-                        <link>http://snakeyamlrepo.appspot.com/releases/1.10/site/apidocs/</link>
                         <link>http://www.liquibase.org/javadoc/</link>
                         <link>http://www.dbunit.org/apidocs/</link>
                         <link>http://testng.org/javadocs/</link>
                     </links>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

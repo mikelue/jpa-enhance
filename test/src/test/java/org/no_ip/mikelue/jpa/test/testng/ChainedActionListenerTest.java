@@ -11,7 +11,7 @@ public class ChainedActionListenerTest {
     public ChainedActionListenerTest() {}
 
     /**
-     * Test the running sequence for before action.<p>
+     * <p>Test the running sequence for before action.</p>
      */
     @Test
     public void beforeActions()
@@ -47,7 +47,7 @@ public class ChainedActionListenerTest {
     }
 
     /**
-     * Test the running sequence for after actions.<p>
+     * <p>Test the running sequence for after actions.</p>
      */
     @Test
     public void afterActions()

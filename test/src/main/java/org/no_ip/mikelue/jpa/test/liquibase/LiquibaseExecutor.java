@@ -4,13 +4,13 @@ import liquibase.Liquibase;
 
 /**
  * This interface is implemented by client and is executed {@link Liquibase} by
- * {@link LiquibaseBuilder#runExecutor}.<p>
+ * {@link LiquibaseBuilder#runExecutor}.
  *
  * @see LiquibaseBuilder
  */
 public interface LiquibaseExecutor {
     /**
-     * This method gets called by {@link LiquibaseBuilder#runExecutor} with a initialized {@link Liquibase} object. <p>
+     * This method gets called by {@link LiquibaseBuilder#runExecutor} with a initialized {@link Liquibase} object.
      *
      * @param liquibase The initizlied {@link Liquibase} object
      *

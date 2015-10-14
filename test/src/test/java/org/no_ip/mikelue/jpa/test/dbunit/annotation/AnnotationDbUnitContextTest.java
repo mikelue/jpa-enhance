@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 
 /**
- * Test the before/after action for annotation context.<p>
+ * <p>Test the before/after action for annotation context.</p>
  */
 public class AnnotationDbUnitContextTest extends AbstractDbUnitEnvTestBase {
     private AnnotationDbUnitContext dbUnitContext;
@@ -22,66 +22,72 @@ public class AnnotationDbUnitContextTest extends AbstractDbUnitEnvTestBase {
     public AnnotationDbUnitContextTest() {}
 
     /**
-     * Test if {@link DatabaseOperation#Insert} is executed before this method.<p>
+     * <p>Test if {@link DatabaseOperation#Insert} is executed before this method.</p>
      */
     @Test
     @OpDataSet(dataSetClazz={ForeignKeyYamlDataSet1.class, ForeignKeyYamlDataSet2.class}, beforeOperation=DataSetOperation.Insert)
     public void beforeOperation()
     {
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_key"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_key",
+				Integer.class
             ),
-            2
+            new Integer(2)
         );
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_box"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_box",
+				Integer.class
             ),
-            4
+            new Integer(4)
         );
     }
 
     /**
-     * Test if {@link DatabaseOperation#Insert} is executed by {@link #beforeOperation}.<p>
+     * <p>Test if {@link DatabaseOperation#Insert} is executed by {@link #beforeOperation}.</p>
      *
-     * This method is used to execute {@link DataSetOperation#Delete}.<p>
+     * <p>This method is used to execute {@link DataSetOperation#Delete}.</p>
      */
     @Test(dependsOnMethods="beforeOperation")
     @OpDataSet(dataSetClazz={ForeignKeyYamlDataSet1.class, ForeignKeyYamlDataSet2.class}, afterOperation=DataSetOperation.Delete)
     public void performOperation()
     {
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_key"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_key",
+				Integer.class
             ),
-            2
+			new Integer(2)
         );
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_box"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_box",
+				Integer.class
             ),
-            4
+			new Integer(4)
         );
     }
 
     /**
-     * Test if {@link DatabaseOperation#Delete} is executed by {@link #afterOperation}.<p>
+     * <p>Test if {@link DatabaseOperation#Delete} is executed by {@link #afterOperation}.</p>
      */
     @Test(dependsOnMethods="performOperation")
     public void checkAfterOperation()
     {
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_key"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_key",
+				Integer.class
             ),
-            0
+            new Integer(0)
         );
         Assert.assertEquals(
-            getJdbcTmpl().queryForInt(
-                "SELECT COUNT(*) FROM tt_box"
+            getJdbcTmpl().queryForObject(
+                "SELECT COUNT(*) FROM tt_box",
+				Integer.class
             ),
-            0
+            new Integer(0)
         );
     }
 

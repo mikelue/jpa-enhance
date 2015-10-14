@@ -9,16 +9,16 @@ import javax.persistence.LockModeType;
 import javax.persistence.TypedQuery;
 
 /**
- * This class provides type-safe DAO for data insert/delete/update.<p>
+ * This class provides type-safe DAO for data insert/delete/update.
  *
- * This class is used to handle <b>single entity manager</b>.<p>
+ * <p>This class is used to handle <strong>single entity manager</strong>.</p>
  *
- * There are some write-operations in which the transaction is <b>defined by sub-class</b>.
- * That is, the default implementation is just a skeleton of operations.<p>
+ * <p>There are some write-operations in which the transaction is <strong>defined by sub-class</strong>.
+ * That is, the default implementation is just a skeleton of operations.</p>
  *
- * This class is used in container-managed environment.<p>
+ * <p>This class is used in container-managed environment.</p>
  *
- * Moreover, this class provides {@link #getLogger() accessor} for <a href="http://www.slf4j.org/">SLF4J</a> logger.<p>
+ * <p>Moreover, this class provides {@link #getLogger() accessor} for <a href="http://www.slf4j.org/">SLF4J</a> logger.</p>
  *
  * @param <T>		The type of JPA entity.
  * @param <PK_T>	The type of JPA entity's primary key
@@ -49,9 +49,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
     abstract public EntityManager getEntityManager();
 
 	/**
-	 * Persist object into database. The transaction of this operation is <b>defined by sub-class</b>.<p>
+	 * Persist object into database. The transaction of this operation is <b>defined by sub-class</b>.
      *
-     * This method would call {@link javax.persistence.EntityManager#persist(Object) EntityManager.persist}.<p>
+     * <p>This method would call {@link javax.persistence.EntityManager#persist(Object) EntityManager.persist}.</p>
      *
 	 * @param newEntity Persisted JPA {@link javax.persistence.Entity} object.
 	 */
@@ -63,9 +63,11 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 	}
 
 	/**
-     * This method would call {@link javax.persistence.EntityManager#merge(Object) EntityManager.merge} to update entity to database. The transaction of this operation is <b>defined by sub-class</b>.<p>
+     * This method would call {@link javax.persistence.EntityManager#merge(Object) EntityManager.merge} to update entity to database. The transaction of this operation is <b>defined by sub-class</b>.
 	 *
-	 * @param existedEntity Persisted JPA {@link javax.persistence.Entity} object.<p>
+	 * @param existedEntity Persisted JPA {@link javax.persistence.Entity} object.
+	 *
+	 * @return The modified data
 	 */
 	public T saveExisted(T existedEntity)
 	{
@@ -76,9 +78,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 
 	/**
 	 * Removing data uses single primary key.  The transaction of this operation is <b>defined by sub-class</b>.
-     * The object would be {@link javax.persistence.EntityManager#refresh(Object) refresh} from database if the entity is not managed by current entity manager.<p>
+     * The object would be {@link javax.persistence.EntityManager#refresh(Object) refresh} from database if the entity is not managed by current entity manager.
      *
-     * This method would call {@link javax.persistence.EntityManager#remove(Object) EntityManager.remove} to remove entity from database.<p>
+     * <p>This method would call {@link javax.persistence.EntityManager#remove(Object) EntityManager.remove} to remove entity from database.</p>
 	 *
 	 * @param primaryKey The PK of existed entity to be removed
      *
@@ -98,9 +100,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 	}
 
 	/**
-	 * Finding data uses single primary key</p>
+	 * Finding data uses single primary key.
      *
-     * This method would call {@link javax.persistence.EntityManager#find(Class, Object) EntityManager.find}
+     * <p>This method would call {@link javax.persistence.EntityManager#find(Class, Object) EntityManager.find}</p>
 	 *
 	 * @param primaryKey The primary key value
 	 *
@@ -112,9 +114,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 	}
 
 	/**
-	 * Finding data uses single primary key and lock data.</p>
+	 * Finding data uses single primary key and lock data.
      *
-     * This method would call {@link javax.persistence.EntityManager#find(Class, Object) EntityManager.find}
+     * <p>This method would call {@link javax.persistence.EntityManager#find(Class, Object) EntityManager.find}</p>
 	 *
 	 * @param primaryKey The primary key value
 	 * @param lockModeType The lock mode type
@@ -127,9 +129,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 	}
 
 	/**
-     * Generating {@link TypedQuery} uses query name.<p>
+     * Generating {@link TypedQuery} uses query name.
      *
-	 * This method would call {@link javax.persistence.EntityManager#createNamedQuery(String, Class) EntityManager.createNamedQuery}
+	 * <p>This method would call {@link javax.persistence.EntityManager#createNamedQuery(String, Class) EntityManager.createNamedQuery}</p>
 	 *
 	 * @param queryName The name of named query
 	 *
@@ -141,9 +143,9 @@ public abstract class AbstractTypedDaoFacadeBase<T, PK_T> {
 	}
 
 	/**
-     * Generating {@link TypedQuery} uses query string.<p>
+     * Generating {@link TypedQuery} uses query string.
      *
-	 * This method would call {@link javax.persistence.EntityManager#createQuery(String, Class) EntityManager.createQuery}
+	 * <p>This method would call {@link javax.persistence.EntityManager#createQuery(String, Class) EntityManager.createQuery}</p>
 	 *
 	 * @param qlString query string
 	 *

@@ -18,7 +18,7 @@ public class UpdateSchemaExecutorTest {
     public UpdateSchemaExecutorTest() {}
 
     /**
-     * Test the updating with the default behaviour.<p>
+     * <p>Test the updating with the default behaviour.</p>
      */
     @Test
     public void defaultUpdate()
@@ -31,7 +31,7 @@ public class UpdateSchemaExecutorTest {
         schemaAssert.assertTableExists("TT_ITEM");
     }
     /**
-     * Test the updating with particular context.<p>
+     * <p>Test the updating with particular context.</p>
      */
     @Test
     public void updateWithContext()
@@ -45,7 +45,7 @@ public class UpdateSchemaExecutorTest {
         schemaAssert.assertTableNotExists("TT_ITEM");
     }
     /**
-     * Test the updating with particular number of changes.<p>
+     * <p>Test the updating with particular number of changes.</p>
      */
     @Test(dependsOnMethods="updateWithDropFirst")
     public void updateWithChangesToApply()
@@ -60,9 +60,9 @@ public class UpdateSchemaExecutorTest {
         schemaAssert.assertTableNotExists("TT_ITEM");
     }
     /**
-     * Test the updating with dropping schema first.<p>
+     * <p>Test the updating with dropping schema first.</p>
      *
-     * This test would execute update database twice(with "runAlways=true").<p>
+     * <p>This test would execute update database twice(with "runAlways=true").</p>
      */
     @Test
     public void updateWithDropFirst()

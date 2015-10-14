@@ -4,11 +4,11 @@ import org.dbunit.dataset.IDataSet;
 
 /**
  * This interface is used to customize the building of {@link IDataSet} object
- * with different platforms.<p>
+ * with different platforms.
  */
 public interface DataSetBuilder {
     /**
-     * Implements this method to provide building mechanism for {@link IDataSet} object.<p>
+     * Implements this method to provide building mechanism for {@link IDataSet} object.
      *
      * @param classOfDataSet The class of {@link IDataSet}
      *

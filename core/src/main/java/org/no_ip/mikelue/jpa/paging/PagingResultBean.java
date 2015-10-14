@@ -7,20 +7,20 @@ import static org.no_ip.mikelue.jpa.commons.number.MathUtil.multiply;
 
 /**
  * 分頁的結果物件，本類別有兩組方法，一組給 JPA 用來設定 {@link javax.persistence.Query#setFirstResult(int)} 與
- * {@link javax.persistence.Query#setMaxResults(int)} 用。<p>
+ * {@link javax.persistence.Query#setMaxResults(int)} 用.
  *
  * 資料取出後，可能有下列情況:
  * <ul>
  * 		<li>所要求的頁數不存在(沒有資料)</li>
  * 		<li>本頁後顯示頁數不足或已到最後一頁</li>
  * </ul>
- * 在上述情況發生時，另一組方法，會用來設定/取得正確分頁結果，包含目前頁數(可能為 0，代表沒有資料)，
- * 本頁後顯示頁數(可能為 0，代表已到最後一頁)<p>
+ * <p>在上述情況發生時，另一組方法，會用來設定/取得正確分頁結果，包含目前頁數(可能為 0，代表沒有資料)，
+ * 本頁後顯示頁數(可能為 0，代表已到最後一頁)</p>
  *
- * {@link #setResultSize(int, FetchPhase)} 是用在查詢不到資料時，再度重新查詢前幾頁資料的處理<p>
+ * <p>{@link #setResultSize(int, FetchPhase)} 是用在查詢不到資料時，再度重新查詢前幾頁資料的處理</p>
  *
- * 若第一次查不到資料，本物件提供 {@link #setResultSize(int, FetchPhase)}，目地讓 client code 重新從頭查詢資料，
- * 並重設新的資料筆數<p>
+ * <p>若第一次查不到資料，本物件提供 {@link #setResultSize(int, FetchPhase)}，目地讓 client code 重新從頭查詢資料，
+ * 並重設新的資料筆數</p>
  *
  * @see TwoPhasePagingRunner
  */
@@ -94,11 +94,11 @@ public class PagingResultBean {
 	}
 
 	/**
-	 * {@link javax.persistence.Query#setFirstResult(int)} 的資料來源，用來取得第一筆開始的資料筆數。<p>
+	 * {@link javax.persistence.Query#setFirstResult(int)} 的資料來源，用來取得第一筆開始的資料筆數.
 	 *
-	 * 開始的筆數為「要求頁碼 - 1」*「每頁筆數」<p>
+	 * <p>開始的筆數為「要求頁碼 - 1」*「每頁筆數」</p>
 	 *
-	 * 若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會傳回 0
+	 * <p>若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會傳回 0</p>
 	 *
 	 * @return 大於等於 0 的開始資料筆數，最大值為 {@link Integer#MAX_VALUE}
 	 *
@@ -128,11 +128,11 @@ public class PagingResultBean {
 		// :~)
 	}
 	/**
-	 * {@link javax.persistence.Query#setMaxResults(int)} 的資料來源，用來取得最後一筆查詢的筆數(最大回傳筆數)。<p>
+	 * {@link javax.persistence.Query#setMaxResults(int)} 的資料來源，用來取得最後一筆查詢的筆數(最大回傳筆數).
 	 *
-	 * 在一般的情況下，會傳回「本頁後顯示頁數 + 1」*「每頁筆數」+ 1<p>
+	 * <p>在一般的情況下，會傳回「本頁後顯示頁數 + 1」*「每頁筆數」+ 1</p>
 	 *
-	 * 若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會傳回 {@link Integer#MAX_VALUE}
+	 * <p>若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會傳回 {@link Integer#MAX_VALUE}</p>
 	 *
 	 * @return 大於 0 最後一筆查詢的筆數，最大值為 {@link Integer#MAX_VALUE}
 	 *
@@ -166,9 +166,9 @@ public class PagingResultBean {
 	}
 
 	/**
-	 * 設定第一次查詢結果(第一種策略)的分頁資料，依結果筆數，會產生不同的結果分頁資料。<p>
+	 * 設定第一次查詢結果(第一種策略)的分頁資料，依結果筆數，會產生不同的結果分頁資料.
 	 *
-	 * 本方法會呼叫 {@link #setResultSize(int, FetchPhase)}，差別在使用 {@link FetchPhase#FirstFetch} 作為結果取得的演算方式
+	 * <p>本方法會呼叫 {@link #setResultSize(int, FetchPhase)}，差別在使用 {@link FetchPhase#FirstFetch} 作為結果取得的演算方式</p>
 	 *
 	 * @param resultSize 第一次查詢後，要設定結果筆數，不得小於 0
 	 *
@@ -180,12 +180,12 @@ public class PagingResultBean {
 	}
 
 	/**
-	 * 設定結果的分頁資料，依指定的 {@link FetchPhase}，會產生不同的結果分頁資料。<p>
+	 * 設定結果的分頁資料，依指定的 {@link FetchPhase}，會產生不同的結果分頁資料.
 	 *
-	 * 若 resultMode 為 {@link FetchPhase#FirstFetch}(第一種策略)，代表從要求的位置開始的查詢<p>
-	 * 若 resultMode 為 {@link FetchPhase#LastFetch}(第二種策略)，代表從第 0 資料到要求的位置的查詢<p>
+	 * <p>若 resultMode 為 {@link FetchPhase#FirstFetch}(第一種策略)，代表從要求的位置開始的查詢</p>
+	 * <p>若 resultMode 為 {@link FetchPhase#LastFetch}(第二種策略)，代表從第 0 資料到要求的位置的查詢</p>
 	 *
-	 * 若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會以 {@link FetchPhase#LastFetch} 為策略
+	 * <p>若請求分頁為 {@link PagingRequestBean#LAST_PAGE}(最後一頁)，會以 {@link FetchPhase#LastFetch} 為策略</p>
 	 *
 	 * @param resultSize 結果的資料筆數，不得小於 0
 	 * @param resultMode 目前查詢的階段(第一次還是最後一次查詢)
@@ -225,11 +225,11 @@ public class PagingResultBean {
 	}
 
 	/**
-	 * 依查詢結果取得「目前結果頁碼」。<p>
+	 * 依查詢結果取得「目前結果頁碼」.
 	 *
-	 * 若尚未呼叫 {@link #setResultSize(int)}，會傳回 {@link #UNKNOWN_RESULT}<p>
+	 * <p>若尚未呼叫 {@link #setResultSize(int)}，會傳回 {@link #UNKNOWN_RESULT}</p>
 	 *
-	 * 本回傳值最小為 0，代表找不到任何資料，{@link #getResultStatus()} 會取得 {@link ResultStatus#EmptyData}
+	 * <p>本回傳值最小為 0，代表找不到任何資料，{@link #getResultStatus()} 會取得 {@link ResultStatus#EmptyData}</p>
 	 *
 	 * @return 最小為 0 的值
 	 *
@@ -249,9 +249,9 @@ public class PagingResultBean {
 		return resultTotalPageNumber;
 	}
 	/**
-	 * 依查詢結果取得查詢的狀態。<p>
+	 * 依查詢結果取得查詢的狀態.
 	 *
-	 * 若尚未查詢，會傳回 {@link ResultStatus#NotReady}
+	 * <p>若尚未查詢，會傳回 {@link ResultStatus#NotReady}</p>
 	 *
 	 * @return 查詢結果的狀態
 	 *

@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The utility to process {@link DbValueGetter}.<p>
+ * The utility to process {@link DbValueGetter}
  *
- * This class generates unmodifiable map which map the integral value to enumeration type.<p>
+ * <p>This class generates unmodifiable map which map the integral value to enumeration type.</p>
  *
  * @see DbValueGetter
  */
@@ -16,8 +16,10 @@ public class DbValueUtil {
 	private DbValueUtil() {}
 
 	/**
-	 * Convert a {@link DbValueGetter} type(in enum type) to Number/Enum map.<p>
+	 * Convert a {@link DbValueGetter} type(in enum type) to Number/Enum map.
 	 *
+	 * @param <T> The type of number
+     * @param <ET> type of {@link DbValueGetter} enumeration
 	 * @param typeOfDbValueGetter The class being converted
 	 *
 	 * @return An unmodifidiable map
@@ -36,8 +38,9 @@ public class DbValueUtil {
 	}
 
 	/**
-	 * Convert a {@link DbValueGetter} type(in enum type) to String(from integral value)/Enum map.<p>
+	 * Convert a {@link DbValueGetter} type(in enum type) to String(from integral value)/Enum map.
 	 *
+	 * @param <ET> The type of value getter
 	 * @param typeOfDbValueGetter The class being converted
 	 *
 	 * @return An unmodifidiable map
@@ -57,7 +60,7 @@ public class DbValueUtil {
 
 
     /**
-     * Convert a joined(with "|" bit operator) numeric value to {@link EnumSet} of {@link DbValueGetter}.<p>
+     * Convert a joined(with "|" bit operator) numeric value to {@link EnumSet} of {@link DbValueGetter}.
      *
      * @param <T> type of persisted number
      * @param <ET> type of {@link DbValueGetter} enumeration
@@ -89,7 +92,7 @@ public class DbValueUtil {
         return resultEnumSet;
     }
     /**
-     * Convert an {@link EnumSet} to joined(with "|" bit operator) numeric value.<p>
+     * Convert an {@link EnumSet} to joined(with "|" bit operator) numeric value.
      *
      * This method would use "|"(bit operator) operator to join the value of {@link DbValueGetter}.
      *

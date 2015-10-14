@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 
 /**
- * Assert the schema.<p>
+ * <p>Assert the schema.</p>
  */
 public class SchemaAssert {
     private JdbcTemplate jdbcTmpl;
@@ -18,7 +18,7 @@ public class SchemaAssert {
     }
 
     /**
-     * Assert that a table should exists.<p>
+     * <p>Assert that a table should exists.</p>
      */
     public void assertTableExists(String tableName)
     {
@@ -34,7 +34,7 @@ public class SchemaAssert {
         }
     }
     /**
-     * Assert that a table shouldn't exists.<p>
+     * <p>Assert that a table shouldn't exists.</p>
      */
     public void assertTableNotExists(String tableName)
     {

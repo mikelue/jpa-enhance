@@ -4,13 +4,13 @@ import java.util.Collections;
 import static java.util.Arrays.asList;
 
 import mockit.Expectations;
+import mockit.Invocation;
 import mockit.Mock;
 import mockit.Mocked;
 import mockit.MockUp;
-import mockit.Verifications;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.apache.commons.lang3.reflect.MethodUtils;
 
 /**
  * 測試二階段查詢功能
@@ -35,12 +35,10 @@ public class TwoPhasePagingRunnerTest {
 			result = asList(new Integer[testSizeOfData]);
 		}};
 		new MockUp<PagingResultBean>() {
-			PagingResultBean it;
-
-			@Mock(reentrant=true)
-			void setResultSize(int size, FetchPhase fetchPhase)
+			@Mock
+			void setResultSize(Invocation invocation, int size, FetchPhase fetchPhase)
 			{
-				it.setResultSize(size, fetchPhase);
+				invocation.proceed(size, fetchPhase);
 				Assert.assertEquals(testSizeOfData, size);
 			}
 		};
@@ -69,12 +67,10 @@ public class TwoPhasePagingRunnerTest {
 			result = asList(new Integer[testSizeOfData]);
 		}};
 		new MockUp<PagingResultBean>() {
-			PagingResultBean it;
-
-			@Mock(reentrant=true)
-			void setResultSize(int size, FetchPhase fetchPhase)
+			@Mock
+			void setResultSize(Invocation invocation, int size, FetchPhase fetchPhase)
 			{
-				it.setResultSize(size, fetchPhase);
+				invocation.proceed(size, fetchPhase);
 
 				switch (fetchPhase) {
 					case FirstFetch:
@@ -111,12 +107,10 @@ public class TwoPhasePagingRunnerTest {
 			result = Collections.<Integer>emptyList();
 		}};
 		new MockUp<PagingResultBean>() {
-			PagingResultBean it;
-
-			@Mock(reentrant=true)
-			void setResultSize(int size, FetchPhase fetchPhase)
+			@Mock
+			void setResultSize(Invocation invocation, int size, FetchPhase fetchPhase)
 			{
-				it.setResultSize(size, fetchPhase);
+				invocation.proceed(size, fetchPhase);
 
 				switch (fetchPhase) {
 					case FirstFetch:
@@ -151,12 +145,10 @@ public class TwoPhasePagingRunnerTest {
 			result = Collections.<Integer>emptyList();
 		}};
 		new MockUp<PagingResultBean>() {
-			PagingResultBean it;
-
-			@Mock(reentrant=true)
-			void setResultSize(int size, FetchPhase fetchPhase)
+			@Mock
+			void setResultSize(Invocation invocation, int size, FetchPhase fetchPhase)
 			{
-				it.setResultSize(size, fetchPhase);
+				invocation.proceed(size, fetchPhase);
 
 				Assert.assertEquals(0, size);
 				Assert.assertEquals(fetchPhase, FetchPhase.FirstFetch);
@@ -183,12 +175,10 @@ public class TwoPhasePagingRunnerTest {
 			result = Collections.<Integer>emptyList();
 		}};
 		new MockUp<PagingResultBean>() {
-			PagingResultBean it;
-
-			@Mock(reentrant=true)
-			void setResultSize(int size, FetchPhase fetchPhase)
+			@Mock
+			void setResultSize(Invocation invocation, int size, FetchPhase fetchPhase)
 			{
-				it.setResultSize(size, fetchPhase);
+				invocation.proceed(size, fetchPhase);
 
 				Assert.assertEquals(0, size);
 				Assert.assertEquals(fetchPhase, FetchPhase.FirstFetch);

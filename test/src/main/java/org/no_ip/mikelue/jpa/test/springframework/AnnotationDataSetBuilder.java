@@ -10,22 +10,22 @@ import org.springframework.beans.BeansException;
 
 /**
  * The builder which supports building {@link IDataSet} from {@link BeanFactory} in
- * <a href="http://www.springsource.org/">SpringFramework</a>'s environment.<p>
+ * <p><a href="http://www.springsource.org/">SpringFramework</a>'s environment.</p>
  *
- * This object should be managed by SpringFramework for convenience.<p>
+ * <p>This object should be managed by SpringFramework for convenience.</p>
  */
 public class AnnotationDataSetBuilder implements DataSetBuilder, BeanFactoryAware {
     private BeanFactory beanFactory;
 
     /**
-     * This object should be managed in SpringFramework for easier usage.<p>
+     * <p>This object should be managed in SpringFramework for easier usage.</p>
      *
      * @see #setBeanFactory
      */
     public AnnotationDataSetBuilder() {}
 
     /**
-     * Build {@link IDataSet} coming from {@link BeanFactory#getBean(Class)}.<p>
+     * <p>Build {@link IDataSet} coming from {@link BeanFactory#getBean(Class)}.</p>
      *
      * @param classOfDataSet The type of bean defined in SpringFramework
      *

@@ -16,7 +16,7 @@ public class DateTimeBuilderTest {
     public DateTimeBuilderTest() {}
 
     /**
-     * Test building for {@link Date}.<p>
+     * <p>Test building for {@link Date}.</p>
      */
     @Test(dataProvider="AddedNumberForDate")
     public void addToDate(
@@ -33,7 +33,7 @@ public class DateTimeBuilderTest {
         );
     }
     /**
-     * Test building for {@link Timestamp}.<p>
+     * <p>Test building for {@link Timestamp}.</p>
      */
     @Test(dataProvider="AddedNumberForTimestamp")
     public void addToTimestamp(DateTimeBuilder.DateTimeUnit dateTimeUnit, int addedNumber, int expectedCompareResult)

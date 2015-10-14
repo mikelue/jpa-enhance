@@ -1,7 +1,7 @@
 package org.no_ip.mikelue.jpa.query;
 
 /**
- * Client implements this interface to execute incremental query processing.<p>
+ * Client implements this interface to execute incremental query processing.
  *
  * @see QueryUtil#getSingleResultByIncrementalQuery(SingleResultQueryAction, SingleResultQueryAction, SingleResultQueryAction...)
  * @see TypedSingleResultQueryAction

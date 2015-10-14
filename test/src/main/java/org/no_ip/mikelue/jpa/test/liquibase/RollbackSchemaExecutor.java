@@ -10,16 +10,16 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import java.util.Arrays;
 
 /**
- * The executor for {@link Liquibase#rollback}.<p>
+ * <p>The executor for {@link Liquibase#rollback}.</p>
  *
- * The execution of this object: {@link #executeLiquibase}.<p>
+ * <p>The execution of this object: {@link #executeLiquibase}.</p>
  */
 public class RollbackSchemaExecutor implements LiquibaseExecutor {
     /**
      * The [null] value and ""(empty string) value of context have
-     * differential behaviors in Liquibase. This is also the default value<p>
+     * <p>differential behaviors in Liquibase. This is also the default value</p>
      *
-     * This value is used to indicated [null] value in {@link Liquibase#rollback}.<p>
+     * <p>This value is used to indicated [null] value in {@link Liquibase#rollback}.</p>
      */
     public static final String[] NO_CONTEXTS = null;
 
@@ -30,7 +30,7 @@ public class RollbackSchemaExecutor implements LiquibaseExecutor {
     private String tagToRollbackTo = null;
 
     /**
-     * Construct this object with number of changes to rollback to.<p>
+     * <p>Construct this object with number of changes to rollback to.</p>
      *
      * @param newChangesToRollbackTo The number of changes to rollback to
      *
@@ -45,7 +45,7 @@ public class RollbackSchemaExecutor implements LiquibaseExecutor {
         changesToRollbackTo = newChangesToRollbackTo;
     }
     /**
-     * Construct this object with tag to rollback to.<p>
+     * <p>Construct this object with tag to rollback to.</p>
      *
      * @param newTagToRollbackTo The tag to rollback to
      *
@@ -62,21 +62,21 @@ public class RollbackSchemaExecutor implements LiquibaseExecutor {
     }
 
     /**
-     * Get the number of changes which is going to be {@link Liquibase#rollback rollbacked}.<p>
+     * <p>Get the number of changes which is going to be {@link Liquibase#rollback rollbacked}.</p>
      *
      * @return The number of changes
      */
 	public Integer getChangesToRollbackTo() { return this.changesToRollbackTo; }
 
     /**
-     * Get the tag to rollback to.<p>
+     * <p>Get the tag to rollback to.</p>
      *
      * @return The tag to rollbck to
      */
     public String getTagToRollbackTo() { return this.tagToRollbackTo; }
 
     /**
-     * Set the contexts which is going to be {@link Liquibase#rollback rollbacked}.<p>
+     * <p>Set the contexts which is going to be {@link Liquibase#rollback rollbacked}.</p>
      *
      * @param newContexts The contexts is going to be rollbacked
      *
@@ -84,7 +84,7 @@ public class RollbackSchemaExecutor implements LiquibaseExecutor {
      */
     public void setContexts(String... newContexts) { this.contexts = newContexts; }
     /**
-     * Get the contexts which is going to be {@link Liquibase#rollback rollbcked}. <b>Default is {@link #NO_CONTEXTS}</b><p>
+     * <p>Get the contexts which is going to be {@link Liquibase#rollback rollbcked}. <b>Default is {@link #NO_CONTEXTS}</b></p>
      *
      * @return The contexts is going to be rollbcked
      *
@@ -100,7 +100,7 @@ public class RollbackSchemaExecutor implements LiquibaseExecutor {
     }
 
     /**
-     * Execute the rollback operation based on properties.<p>
+     * <p>Execute the rollback operation based on properties.</p>
      *
      * The execution of this method is one of following list:
      * <ol>

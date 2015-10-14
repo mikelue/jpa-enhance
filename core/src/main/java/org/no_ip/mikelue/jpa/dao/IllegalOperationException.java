@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 /**
  * This exception is used to throw from DAO object to indicate that
- * this operation which inherited from {@link AbstractTypedDaoFacadeBase} is not supported.<p>
+ * this operation which inherited from {@link AbstractTypedDaoFacadeBase} is not supported.
  */
 public class IllegalOperationException extends RuntimeException {
     private static final long serialVersionUID = 1L;

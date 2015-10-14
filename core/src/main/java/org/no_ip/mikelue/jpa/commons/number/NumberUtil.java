@@ -1,19 +1,23 @@
 package org.no_ip.mikelue.jpa.commons.number;
 
 /**
- * 數字相關的工具類別。<p>
+ * 數字相關的工具類別.
  */
 public class NumberUtil {
 	private NumberUtil() {}
 
 	/**
-	 * 將 long 的資料，轉為最接近的 int 值。<p>
+	 * 將 long 的資料，轉為最接近的 int 值.
 	 *
-	 * 若 longValue > {@link Integer#MAX_VALUE}，傳回 {@link Integer#MAX_VALUE}<p>
-	 * 若 longValue < {@link Integer#MIN_VALUE}，傳回 {@link Integer#MIN_VALUE}<p>
+	 * <p>
+	 * 若 longValue &gt; {@link Integer#MAX_VALUE}，傳回 {@link Integer#MAX_VALUE}<br>
+	 * 若 longValue &lt; {@link Integer#MIN_VALUE}，傳回 {@link Integer#MIN_VALUE}<br>
 	 * 否則傳回 int value
+	 * </p>
 	 *
-	 * @param longValue
+	 * @param longValue The value to be converted
+	 *
+	 * @return The result value
 	 */
 	public static int intValue(long longValue)
 	{

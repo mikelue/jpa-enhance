@@ -3,7 +3,7 @@ package org.no_ip.mikelue.jpa.test.dbunit.annotation;
 import org.dbunit.dataset.IDataSet;
 
 /**
- * This implementation would build {@link IDataSet} by {@link Class#newInstance()}.<p>
+ * This implementation would build {@link IDataSet} by {@link Class#newInstance()}.
  */
 public class SimpleDataSetBuilder implements DataSetBuilder {
     public SimpleDataSetBuilder() {}

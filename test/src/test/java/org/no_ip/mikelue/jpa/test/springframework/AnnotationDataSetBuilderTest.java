@@ -14,7 +14,7 @@ public class AnnotationDataSetBuilderTest {
     public AnnotationDataSetBuilderTest() {}
 
     /**
-     * Test the building for {@link IDataSet} coming from SpringFramework.<p>
+     * <p>Test the building for {@link IDataSet} coming from SpringFramework.</p>
      */
     @Test
     public void buildFromSpringFramework()

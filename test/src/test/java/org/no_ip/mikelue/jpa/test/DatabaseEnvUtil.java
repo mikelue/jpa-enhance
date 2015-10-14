@@ -13,7 +13,7 @@ public class DatabaseEnvUtil {
 
     /**
      * This method constructs a {@link DataSource} with {@link JDBCDataSourceFactory} and
-     * initialzie HSQLDB in "target/hsqldb/$dbName" as URL.<p>
+     * <p>initialzie HSQLDB in "target/hsqldb/$dbName" as URL.</p>
      *
      * @param dbName the name of database in HSQLDB URL
      */

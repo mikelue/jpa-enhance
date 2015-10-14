@@ -9,14 +9,15 @@ import org.testng.Assert;
 import static org.apache.commons.lang3.Validate.notNull;
 
 /**
- * This object provide various assertion for JSR-303 testing.<p>
+ * <p>This object provide various assertion for JSR-303 testing.</p>
  */
 public class ValidationAssert {
     private ValidationAssert() {}
 
     /**
-     * Asserts expected violation, whichi is exactly the sole violation.<p>
+     * <p>Asserts expected violation, whichi is exactly the sole violation.</p>
      *
+     * @param <T> The type of validation
      * @param violations The violations produced by {@link Validator#validate}
      * @param expectedAnnotationType The mandatory expected class of violated annotation
 	 *
@@ -35,8 +36,9 @@ public class ValidationAssert {
         /**
          * Asserts that the expected violation
          */
+		@SuppressWarnings("unchecked")
         Class<? extends Annotation> testAnnnotationType =
-            violations.iterator().next().getConstraintDescriptor().getAnnotation().getClass();
+            (Class<? extends Annotation>)violations.iterator().next().getConstraintDescriptor().getAnnotation().getClass();
         Assert.assertTrue(
             expectedAnnotationType.isAssignableFrom(testAnnnotationType),
             String.format(
@@ -48,8 +50,9 @@ public class ValidationAssert {
     }
 
     /**
-     * Asserts expected violation, which is contained in one of violations.<p>
+     * <p>Asserts expected violation, which is contained in one of violations.</p>
      *
+     * @param <T> The type of validation
      * @param violations The violations produced by {@link Validator#validate}
      * @param expectedAnnotationType The mandatory expected class of violated annotation
 	 *
@@ -68,8 +71,9 @@ public class ValidationAssert {
          * Check each of violations to find out the expected one
          */
         for (ConstraintViolation<T> violation: violations) {
+			@SuppressWarnings("unchecked")
             Class<? extends Annotation> testAnnnotationType =
-                violation.getConstraintDescriptor().getAnnotation().getClass();
+                (Class<? extends Annotation>)violation.getConstraintDescriptor().getAnnotation().getClass();
 
             if (expectedAnnotationType.isAssignableFrom(testAnnnotationType)) {
                 return;

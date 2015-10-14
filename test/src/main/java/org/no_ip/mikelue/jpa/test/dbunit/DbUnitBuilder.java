@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 /**
- * This class is a builder class for running {@link DatabaseOperation}.<p>
+ * This class is a builder class for running {@link DatabaseOperation}.
  *
- * This class only supports {@link DataSource} currently.<p>
+ * <p>This class only supports {@link DataSource} currently.</p>
  */
 public class DbUnitBuilder {
     private static Logger logger = LoggerFactory.getLogger(DbUnitBuilder.class);
@@ -33,7 +33,7 @@ public class DbUnitBuilder {
     }
 
     /**
-     * Building this object by {@link DataSource} and {@link IDataTypeFactory}.<p>
+     * Building this object by {@link DataSource} and {@link IDataTypeFactory}.
      *
      * @param newDataSource the data source
      * @param newDataTypeFactory the data type factory
@@ -47,10 +47,10 @@ public class DbUnitBuilder {
         return new DbUnitBuilder(newDataSource, newDataTypeFactory, new DoNothingConfigurer());
     }
     /**
-     * Building this object by {@link DataSource} and {@link IDataTypeFactory}.<p>
+     * Building this object by {@link DataSource} and {@link IDataTypeFactory}.
      *
-     * Additionally, this builder method allows client to customize {@link DatabaseDataSourceConnection} by
-     * implementing {@link DbUnitConnectionConfigurer}.<p>
+     * <p>Additionally, this builder method allows client to customize {@link DatabaseDataSourceConnection} by
+     * implementing {@link DbUnitConnectionConfigurer}.</p>
      *
      * @param newDataSource the data source
      * @param newDataTypeFactory the data type factory
@@ -84,7 +84,7 @@ public class DbUnitBuilder {
 
     /**
      * This method run database operation and throw wrapping {@link DbUnitExecuteException} comes from
-     * any DBUnit methods.<p>
+     * any DBUnit methods.
      *
      * @param sourceDataSet the source data set
      * @param dbOperation the operation run to database
@@ -121,7 +121,9 @@ public class DbUnitBuilder {
     }
 
     /**
-     * Checks whether the operation of dataset is run in transaction.<p>
+     * Checks whether the operation of dataset is run in transaction.
+	 *
+	 * @return true if the execution need to be run in transaction
      *
      * @see #setRunAsTransaction
      */
@@ -130,7 +132,9 @@ public class DbUnitBuilder {
         return runAsTransaction;
     }
     /**
-     * Setup whether the operation of dataset is run in transaction.<p>
+     * Setup whether the operation of dataset is run in transaction.
+	 *
+	 * @param newRunAsTransaction The value of transaction
      *
      * @see #setRunAsTransaction
      */

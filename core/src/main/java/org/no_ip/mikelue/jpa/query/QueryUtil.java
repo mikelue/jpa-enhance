@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Improvement of {@link Query}'s or {@link TypedQuery}'s methods.<p>
+ * Improvement of {@link Query}'s or {@link TypedQuery}'s methods.
  */
 public class QueryUtil {
     private static Logger logger = LoggerFactory.getLogger(QueryUtil.class);
@@ -19,7 +19,7 @@ public class QueryUtil {
 
     /**
      * This method is almost as same as {@link Query#getSingleResult} besides
-     * won't throw {@link NoResultException} if there is nothing returned.<p>
+     * won't throw {@link NoResultException} if there is nothing returned.
      *
      * @param query query object
      *
@@ -46,8 +46,9 @@ public class QueryUtil {
 
     /**
      * This method is almost as same as {@link TypedQuery#getSingleResult} besides
-     * won't throw {@link NoResultException} if there is nothing returned.<p>
+     * won't throw {@link NoResultException} if there is nothing returned.
      *
+	 * @param <T> The type of result for query
      * @param typedQuery Type-Safe query object
      *
      * @return return null if nothing in result list.
@@ -73,9 +74,9 @@ public class QueryUtil {
 
     /**
      * Gets data by multiple {@link SingleResultQueryAction}s with exhausting every provided query action
-     * to retrive data until there is any of queries has viable data(not null).<p>
+     * to retrive data until there is any of queries has viable data(not null).
      *
-     * The sequence of execution agrees with the parameters of method.<p>
+     * <p>The sequence of execution agrees with the parameters of method.</p>
      *
      * @param firstAction The 1st action to retrieve data
      * @param secondAction The 2ed action to retrieve data
@@ -84,6 +85,8 @@ public class QueryUtil {
      * @see SingleResultQueryAction
      * @see #getSingleResultByIncrementalQuery(TypedSingleResultQueryAction, TypedSingleResultQueryAction, TypedSingleResultQueryAction...)
      * @see #getSingleResult(Query)
+	 *
+	 * @return The result of query
      */
     public static Object getSingleResultByIncrementalQuery(
         SingleResultQueryAction firstAction, SingleResultQueryAction secondAction, SingleResultQueryAction... actions
@@ -93,10 +96,11 @@ public class QueryUtil {
 
     /**
      * Gets data by multiple {@link SingleResultQueryAction}s with exhausting every provided query action
-     * to retrive data until there is any of queries has viable data(not null).<p>
+     * to retrive data until there is any of queries has viable data(not null).
      *
-     * The sequence of execution agrees with the parameters of method.<p>
+     * <p>The sequence of execution agrees with the parameters of method.</p>
      *
+	 * @param <T> The type of result for query
      * @param firstAction The 1st action to retrieve data
      * @param secondAction The 2ed action to retrieve data
      * @param actions The remaining actions to retrieve data
@@ -104,6 +108,8 @@ public class QueryUtil {
      * @see TypedSingleResultQueryAction
      * @see #getSingleResultByIncrementalQuery(SingleResultQueryAction, SingleResultQueryAction, SingleResultQueryAction...)
      * @see #getSingleResult(TypedQuery)
+	 *
+	 * @return The result of query
      */
     public static <T> T getSingleResultByIncrementalQuery(
         TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction, TypedSingleResultQueryAction<T>... actions
@@ -113,9 +119,9 @@ public class QueryUtil {
 
     /**
      * Gets data by multiple {@link ListResultQueryAction}s with exhausting every provided query action
-     * to retrive data until there is any of queries has viable data(the size of result list is greater than 1).<p>
+     * to retrive data until there is any of queries has viable data(the size of result list is greater than 1).
      *
-     * The sequence of execution agrees with the parameters of method.<p>
+     * <p>The sequence of execution agrees with the parameters of method.</p>
      *
      * @param firstAction The 1st action to retrieve data
      * @param secondAction The 2ed action to retrieve data
@@ -123,6 +129,8 @@ public class QueryUtil {
      *
      * @see ListResultQueryAction
      * @see #getListResultByIncrementalQuery(TypedListResultQueryAction, TypedListResultQueryAction, TypedListResultQueryAction...)
+	 *
+	 * @return The result of query
      */
     public static List<Object> getListResultByIncrementalQuery(
         ListResultQueryAction firstAction, ListResultQueryAction secondAction, ListResultQueryAction... actions
@@ -132,16 +140,19 @@ public class QueryUtil {
 
     /**
      * Gets data by multiple {@link ListResultQueryAction}s with exhausting every provided query action
-     * to retrive data until there is any of queries has viable data(the size of result list is greater than 1).<p>
+     * to retrive data until there is any of queries has viable data(the size of result list is greater than 1).
      *
-     * The sequence of execution agrees with the parameters of method.<p>
+     * <p>The sequence of execution agrees with the parameters of method.</p>
      *
+	 * @param <T> The type of result for query
      * @param firstAction The 1st action to retrieve data
      * @param secondAction The 2ed action to retrieve data
      * @param actions The remaining actions to retrieve data
      *
      * @see TypedListResultQueryAction
      * @see #getListResultByIncrementalQuery(ListResultQueryAction, ListResultQueryAction, ListResultQueryAction...)
+	 *
+	 * @return The result of query
      */
     public static <T> List<T> getListResultByIncrementalQuery(
         TypedListResultQueryAction<T> firstAction, TypedListResultQueryAction<T> secondAction,
@@ -152,7 +163,14 @@ public class QueryUtil {
 
 	/**
 	 * This method as alias name of calling method to
-	 * prevent recursive calling of related methods<p>
+	 * prevent recursive calling of related methods.
+	 *
+	 * @param <T> The type of result for query
+	 * @param firstAction The first action
+	 * @param secondAction The second action
+	 * @param actions following actions
+	 *
+	 * @return The result of query
 	 */
 	private static <T> T getSingleResultByIncrementalQueryImpl(
         TypedSingleResultQueryAction<T> firstAction, TypedSingleResultQueryAction<T> secondAction,
@@ -187,7 +205,14 @@ public class QueryUtil {
 
 	/**
 	 * This method as alias name of calling method to
-	 * prevent recursive calling of related methods<p>
+	 * prevent recursive calling of related methods
+	 *
+	 * @param <T> The type of result for query
+	 * @param firstAction The first action
+	 * @param secondAction The second action
+	 * @param actions following actions
+	 *
+	 * @return The result of query
 	 */
 	private static <T> List<T> getListResultByIncrementalQueryImpl(
         TypedListResultQueryAction<T> firstAction, TypedListResultQueryAction<T> secondAction,

@@ -14,9 +14,9 @@ import org.xml.sax.InputSource;
 
 /**
  * This utility provides static methodsto build {@link IDataSet},
- * which comes from {@link Resource}.<p>
+ * <p>which comes from {@link Resource}.</p>
  *
- * This class also supports various format of data from file({@link Resource}).<p>
+ * <p>This class also supports various format of data from file({@link Resource}).</p>
  */
 public class DataSetBuilder {
     private static Logger logger = LoggerFactory.getLogger(DataSetBuilder.class);
@@ -24,7 +24,7 @@ public class DataSetBuilder {
     private DataSetBuilder() {}
 
     /**
-     * Build a {@link IDataSet} containing {@link FlatXmlDataSet flat xml} from {@link Resource}.<p>
+     * <p>Build a {@link IDataSet} containing {@link FlatXmlDataSet flat xml} from {@link Resource}.</p>
      *
      * @param resource the resource of context in SpringFramework
      *
@@ -44,7 +44,7 @@ public class DataSetBuilder {
     }
 
     /**
-     * Build a {@link IDataSet} containing {@link XmlDataSet xml} from {@link Resource}.<p>
+     * <p>Build a {@link IDataSet} containing {@link XmlDataSet xml} from {@link Resource}.</p>
      *
      * @param resource the resource of context in SpringFramework
      *
@@ -64,7 +64,7 @@ public class DataSetBuilder {
     }
 
     /**
-     * Build a {@link IDataSet} containing <a href="http://yaml.org/">YAML</a> from {@link Resource}.<p>
+     * <p>Build a {@link IDataSet} containing <a href="http://yaml.org/">YAML</a> from {@link Resource}.</p>
      *
      * @param resource the resource of context in SpringFramework
      *

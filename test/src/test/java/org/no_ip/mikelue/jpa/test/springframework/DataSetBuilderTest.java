@@ -16,7 +16,7 @@ public class DataSetBuilderTest {
     public DataSetBuilderTest() {}
 
     /**
-     * Test the loading of resource with flat XML format.<p>
+     * <p>Test the loading of resource with flat XML format.</p>
      */
     @Test
     public void buildWithFlatXml() throws DataSetException
@@ -34,7 +34,7 @@ public class DataSetBuilderTest {
     }
 
     /**
-     * Test the loading of resource with normal XML format.<p>
+     * <p>Test the loading of resource with normal XML format.</p>
      */
     @Test
     public void buildWithXml() throws DataSetException
@@ -52,7 +52,7 @@ public class DataSetBuilderTest {
     }
 
     /**
-     * Test the loading of resource with <a href="http://yaml.org/">YAML</a> format.<p>
+     * <p>Test the loading of resource with <a href="http://yaml.org/">YAML</a> format.</p>
      */
     @Test
     public void buildWithYaml() throws DataSetException

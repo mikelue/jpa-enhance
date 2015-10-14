@@ -13,7 +13,7 @@ public class SuiteActionListenerTest {
     public SuiteActionListenerTest() {}
 
     /**
-     * Test the {@link ISuite#onStart} method, which should call the {@link ActionListener#executeBeforeAction()} method.<p>
+     * <p>Test the {@link ISuite#onStart} method, which should call the {@link ActionListener#executeBeforeAction()} method.</p>
      */
     @Test
     public void onStart()
@@ -26,7 +26,7 @@ public class SuiteActionListenerTest {
         );
     }
     /**
-     * Test the {@link ISuite#onFinish} method, which should call the {@link ActionListener#executeAfterAction()} method.<p>
+     * <p>Test the {@link ISuite#onFinish} method, which should call the {@link ActionListener#executeAfterAction()} method.</p>
      */
     @Test
     public void onFinish()

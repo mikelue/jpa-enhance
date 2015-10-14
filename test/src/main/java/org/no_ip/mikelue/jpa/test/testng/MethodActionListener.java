@@ -7,13 +7,13 @@ import org.testng.ITestResult;
 
 /**
  * The {@link IInvokedMethodListener2} which is for executing {@link ActionListener#executeBeforeAction} and
- * {@link ActionListener#executeAfterAction} in {@link #beforeInvocation} and {@link #afterInvocation}.<p>
+ * <p>{@link ActionListener#executeAfterAction} in {@link #beforeInvocation} and {@link #afterInvocation}.</p>
  *
- * This listener should be inherited by sub-class.<p>
+ * <p>This listener should be inherited by sub-class.</p>
  * The sub-class should implement {@link #buildActionListener} to provide {@link ActionListener} used in
- * this listener.<p>
+ * <p>this listener.</p>
  *
- * There is an additional {@link #getTestContext} method to retrieve {@link ITestContext} in current thread.<p>
+ * <p>There is an additional {@link #getTestContext} method to retrieve {@link ITestContext} in current thread.</p>
  *
  * @see TestActionListener
  */
@@ -49,7 +49,7 @@ public abstract class MethodActionListener extends TestNGActionListenerBase<ITes
     }
 
     /**
-     * Implements the retrieving for {@link ITestContext} object in TestNG context.<p>
+     * <p>Implements the retrieving for {@link ITestContext} object in TestNG context.</p>
      *
      * @return Current {@link ITestResult} object in thread.
      *
@@ -61,7 +61,7 @@ public abstract class MethodActionListener extends TestNGActionListenerBase<ITes
         return testResultOfCurrentThread.get();
     }
     /**
-     * Implements the retrieving for {@link ITestContext} object in TestNG context.<p>
+     * <p>Implements the retrieving for {@link ITestContext} object in TestNG context.</p>
      *
      * @return Current {@link ITestResult} object in thread.
      *
@@ -73,12 +73,12 @@ public abstract class MethodActionListener extends TestNGActionListenerBase<ITes
     }
 
     /**
-     * Nothing implemented.<p>
+     * <p>Nothing implemented.</p>
      */
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResultOfCurrentThread) {}
     /**
-     * Nothing implemented.<p>
+     * <p>Nothing implemented.</p>
      */
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResultOfCurrentThread) {}

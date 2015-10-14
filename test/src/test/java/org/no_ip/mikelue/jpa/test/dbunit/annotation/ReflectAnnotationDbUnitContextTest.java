@@ -19,7 +19,7 @@ public class ReflectAnnotationDbUnitContextTest {
     public ReflectAnnotationDbUnitContextTest() {}
 
     /**
-     * Test the process for {@link OpDataSet} annotating a {@link Class} in before operation.<p>
+     * <p>Test the process for {@link OpDataSet} annotating a {@link Class} in before operation.</p>
      */
     @Test
     public void beforeOperationForClass()
@@ -34,7 +34,7 @@ public class ReflectAnnotationDbUnitContextTest {
         testContext.beforeOperation(FakeAnnotatedClass.class);
     }
     /**
-     * Test the process for {@link OpDataSet} annotating a {@link Class} in after operation.<p>
+     * <p>Test the process for {@link OpDataSet} annotating a {@link Class} in after operation.</p>
      */
     @Test
     public void afterOperationForClass()
@@ -49,7 +49,7 @@ public class ReflectAnnotationDbUnitContextTest {
         testContext.afterOperation(FakeAnnotatedClass.class);
     }
     /**
-     * Test the process for {@link OpDataSet} annotating a {@link Method} in before operation.<p>
+     * <p>Test the process for {@link OpDataSet} annotating a {@link Method} in before operation.</p>
      */
     @Test
     public void beforeOperationForMethod()
@@ -64,7 +64,7 @@ public class ReflectAnnotationDbUnitContextTest {
         testContext.beforeOperation(ReflectionUtils.findMethod(ReflectAnnotationDbUnitContextTest.class, "fakeMethod"));
     }
     /**
-     * Test the process for {@link OpDataSet} annotating a {@link Method} in after operation.<p>
+     * <p>Test the process for {@link OpDataSet} annotating a {@link Method} in after operation.</p>
      */
     @Test
     public void afterOperationForMethod()

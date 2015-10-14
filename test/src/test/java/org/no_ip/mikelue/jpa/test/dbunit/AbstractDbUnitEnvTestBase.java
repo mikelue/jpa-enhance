@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 /**
- * Provides common, and rough utility in testing for DBUnit.<p>
+ * <p>Provides common, and rough utility in testing for DBUnit.</p>
  */
 public abstract class AbstractDbUnitEnvTestBase {
     private JdbcTemplate jdbcTmpl;

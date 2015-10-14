@@ -10,14 +10,15 @@ import java.lang.reflect.Method;
 
 /**
  * This context of annotation has additional method to process annotation
- * from {@link Class} or {@link Method} directly.<p>
+ * from {@link Class} or {@link Method} directly.
  */
 public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
     private Logger logger = LoggerFactory.getLogger(ReflectAnnotationDbUnitContext.class);
 
     /**
-     * Initialize this object with fundamental environment.<p>
-     * This constructor would use {@link SimpleDataSetBuilder} as default {@link DataSetBuilder}.<p>
+     * Initialize this object with fundamental environment.
+	 *
+     * <p>This constructor would use {@link SimpleDataSetBuilder} as default {@link DataSetBuilder}.</p>
      *
      * @param newDbUnitBuilder The DbUnit environment
      * @param newDataSetBuilder The builder for generating {@link IDataSet}
@@ -28,7 +29,7 @@ public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
         logger.debug("Initialized with dataset builder: {}", newDbUnitBuilder.getClass().getSimpleName());
     }
     /**
-     * Initialize this object with fundamental environment.<p>
+     * Initialize this object with fundamental environment
      *
      * @param newDbUnitBuilder The DbUnit environment
      */
@@ -38,11 +39,11 @@ public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
     }
 
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.
      *
-     * This clazz would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This clazz would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
-     * It is fine that if the clazz isn't annotated with {@link OpDataSet}.<p>
+     * <p>It is fine that if the clazz isn't annotated with {@link OpDataSet}.</p>
      *
      * @param clazz The clazz that may have {@link OpDataSet} annotation
      *
@@ -61,11 +62,11 @@ public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
         super.beforeOperation(annotation);
     }
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.
      *
-     * This clazz would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This clazz would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
-     * It is fine that if the clazz doesn't annotated with {@link OpDataSet}.<p>
+     * <p>It is fine that if the clazz doesn't annotated with {@link OpDataSet}.</p>
      *
      * @param clazz The clazz that may have {@link OpDataSet} annotation
      *
@@ -85,11 +86,11 @@ public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
     }
 
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "before action" meaning.
      *
-     * This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
-     * It is fine that if the method isn't annotated with {@link OpDataSet}.<p>
+     * <p>It is fine that if the method isn't annotated with {@link OpDataSet}.</p>
      *
      * @param method The method that may have {@link OpDataSet} annotation
      *
@@ -108,11 +109,11 @@ public class ReflectAnnotationDbUnitContext extends AnnotationDbUnitContext {
         super.beforeOperation(annotation);
     }
     /**
-     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.<p>
+     * Perform {@link DataSetOperation dataset operation} to database with "after action" meaning.
      *
-     * This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.<p>
+     * <p>This method would use {@link #getDataSetBuilder()} to retrive the {@link IDataSet}.</p>
      *
-     * It is fine that if the method doesn't annotated with {@link OpDataSet}.<p>
+     * <p>It is fine that if the method doesn't annotated with {@link OpDataSet}.</p>
      *
      * @param method The method that may have {@link OpDataSet} annotation
      *

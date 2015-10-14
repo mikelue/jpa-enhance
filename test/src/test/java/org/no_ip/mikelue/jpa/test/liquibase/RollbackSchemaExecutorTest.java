@@ -18,7 +18,7 @@ public class RollbackSchemaExecutorTest {
     public RollbackSchemaExecutorTest() {}
 
     /**
-     * Test the updating with particular context.<p>
+     * <p>Test the updating with particular context.</p>
      */
     @Test(dependsOnMethods="rollbackWithChangesToRollbackTo")
     public void rollbackWithContext()
@@ -32,7 +32,7 @@ public class RollbackSchemaExecutorTest {
         schemaAssert.assertTableExists("TT_ITEM");
     }
     /**
-     * Test the updating with particular tag.<p>
+     * <p>Test the updating with particular tag.</p>
      */
     @Test
     public void rollbackWithTag()
@@ -45,7 +45,7 @@ public class RollbackSchemaExecutorTest {
         schemaAssert.assertTableNotExists("TT_ITEM");
     }
     /**
-     * Test the updating with particular number of changes.<p>
+     * <p>Test the updating with particular number of changes.</p>
      */
     @Test
     public void rollbackWithChangesToRollbackTo()

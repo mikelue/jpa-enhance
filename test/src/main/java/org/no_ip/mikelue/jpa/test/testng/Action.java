@@ -4,7 +4,7 @@ import org.testng.ITestNGListener;
 
 /**
  * This type is the generic type to descibe the action
- * which could be executed in {@link ITestNGListener} or beforeXXX/afterXXX annotation.<p>
+ * <p>which could be executed in {@link ITestNGListener} or beforeXXX/afterXXX annotation.</p>
  */
 public interface Action {
     /**
@@ -17,7 +17,7 @@ public interface Action {
     };
 
     /**
-     * The main method for executing action.<p>
+     * <p>The main method for executing action.</p>
      *
      * @throws ExecuteActionException The wrapper exception thrown from executor
      */

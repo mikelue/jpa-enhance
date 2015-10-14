@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The listener controller for executing {@link Action}.<p>
+ * <p>The listener controller for executing {@link Action}.</p>
  *
  * This controller is needed to be inherited and the sub-class should
  * override {@link #getBeforeAction()} or {@link #getAfterAction()} to setup
- * the {@link Action} for running by this controller.<p>
+ * <p>the {@link Action} for running by this controller.</p>
  *
  * This type is a general case for different running scopes of listeners in <a href="http://testng.org/doc/documentation-main.html#annotations">TestNG</a>.
  */
@@ -20,7 +20,7 @@ public abstract class ActionListener {
     public ActionListener() {}
 
     /**
-     * Execute the {@link Action} which comes from {@link #getBeforeAction()}.<p>
+     * <p>Execute the {@link Action} which comes from {@link #getBeforeAction()}.</p>
      *
      * @throws ExecuteActionException The exception thrown from {@link Action#executeAction()}
      */
@@ -38,7 +38,7 @@ public abstract class ActionListener {
         action.executeAction();
     }
     /**
-     * Execute the {@link Action} which comes from {@link #getAfterAction()}.<p>
+     * <p>Execute the {@link Action} which comes from {@link #getAfterAction()}.</p>
      *
      * @throws ExecuteActionException The exception thrown from {@link Action#executeAction()}
      */
@@ -67,7 +67,7 @@ public abstract class ActionListener {
     }
 
     /**
-     * This method should be overrided by sub-class if it wants to execute action before something.<p>
+     * <p>This method should be overrided by sub-class if it wants to execute action before something.</p>
      *
      * @return the initialized {@link Action}, or nothing get executed by return null
      */
@@ -76,7 +76,7 @@ public abstract class ActionListener {
         return null;
     }
     /**
-     * This method should be overrided by sub-class if it wants to execute action after something.<p>
+     * <p>This method should be overrided by sub-class if it wants to execute action after something.</p>
      *
      * @return the initialized {@link Action}, or nothing get executed by return null
      */

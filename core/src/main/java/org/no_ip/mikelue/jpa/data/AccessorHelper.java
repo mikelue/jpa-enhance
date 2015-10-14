@@ -1,15 +1,15 @@
 package org.no_ip.mikelue.jpa.data;
 
 /**
- * This utility provides helper methods for implementing accessor methods.<p>
+ * This utility provides helper methods for implementing accessor methods.
  */
 public class AccessorHelper {
     private AccessorHelper() {}
 
     /**
-     * Convert the value of {@link Enum} to {@link String} value.<p>
+     * Convert the value of {@link Enum} to {@link String} value.
      *
-     * This method uses {@link Enum#name()} to generate String value.<p>
+     * <p>This method uses {@link Enum#name()} to generate String value.</p>
      *
      * @param <T> The generic type of Enum
      * @param enumValue The value of enum
@@ -26,9 +26,9 @@ public class AccessorHelper {
     }
 
     /**
-     * Convert the value of {@link String} to {@link Enum} value.<p>
+     * Convert the value of {@link String} to {@link Enum} value.
      *
-     * This method uses {@link Enum#valueOf} to generate {@link Enum} value.<p>
+     * <p>This method uses {@link Enum#valueOf} to generate {@link Enum} value.</p>
      *
      * @param <T> The generic type of Enum
      * @param enumType The class of Enum

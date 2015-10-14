@@ -9,16 +9,16 @@ import static java.util.Calendar.getInstance;
 
 /**
  * The utility to process Date/Time/Timestamp data between SQL and Java.
- * In some circumstance, the time/precision of time would be erased.<p>
+ * In some circumstance, the time/precision of time would be erased.
  *
- * With {@link Date} type, the time would be 00:00:00<p>
- * With {@link Timestamp} type, milliseconds would be erased<p>
+ * <p>With {@link Date} type, the time would be 00:00:00</p>
+ * <p>With {@link Timestamp} type, milliseconds would be erased</p>
  */
 public class DateTimeUtil {
 	private DateTimeUtil() {}
 
 	/**
-	 * Compare SQL date type, time value would be erased.<p>
+	 * Compare SQL date type, time value would be erased.
 	 *
 	 * @param leftDate The left side of operator
 	 * @param rightDate The right side of operator
@@ -35,7 +35,7 @@ public class DateTimeUtil {
 		return leftCalender.compareTo(rightCalender);
 	}
 	/**
-	 * Compare SQL timestamp type, milliseconds would be erased.<p>
+	 * Compare SQL timestamp type, milliseconds would be erased.
 	 *
      * @param leftTime The left side of operator
      * @param rightTime The right side of operator
@@ -53,7 +53,7 @@ public class DateTimeUtil {
 	}
 
 	/**
-	 * Generate current date.<p>
+	 * Generate current date.
 	 *
 	 * @return current date
 	 *
@@ -76,7 +76,7 @@ public class DateTimeUtil {
 	}
 
 	/**
-	 * Erase the time potion of Calendar.<p>
+	 * Erase the time potion of Calendar.
 	 *
 	 * @param calendar source calendar object
 	 *
@@ -90,7 +90,7 @@ public class DateTimeUtil {
 		return DateUtils.truncate(calendar, Calendar.DATE);
 	}
 	/**
-	 * Erase the milliseconds of Calendar.<p>
+	 * Erase the milliseconds of Calendar.
 	 *
 	 * @param calendar source calendar object
 	 *
@@ -105,7 +105,7 @@ public class DateTimeUtil {
 	}
 
 	/**
-	 * Convert {@link Calendar} to {@link Date}.<p>
+	 * Convert {@link Calendar} to {@link Date}.
 	 *
 	 * @param calendar source calendar object
 	 *
@@ -119,7 +119,7 @@ public class DateTimeUtil {
 	}
 
 	/**
-	 * Convert {@link Calendar} to {@link Timestamp}.<p>
+	 * Convert {@link Calendar} to {@link Timestamp}.
 	 *
 	 * @param calendar source calendar object
 	 *
@@ -133,7 +133,7 @@ public class DateTimeUtil {
 	}
 
 	/**
-	 * Erase the time portion and convert {@link java.util.Date} to {@link Date}.<p>
+	 * Erase the time portion and convert {@link java.util.Date} to {@link Date}.
 	 *
 	 * @param srcDate source date object
 	 *
@@ -148,7 +148,7 @@ public class DateTimeUtil {
 		return convertToDate(srcCalender);
 	}
 	/**
-	 * Erase the milliseconds and convert {@link java.util.Date} to {@link Timestamp}.<p>
+	 * Erase the milliseconds and convert {@link java.util.Date} to {@link Timestamp}.
 	 *
 	 * @param srcDate source date object
 	 *

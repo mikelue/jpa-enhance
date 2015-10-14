@@ -33,10 +33,10 @@ import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 /**
- * This class is a {@link IDataSet} which accepts data from <a href="http://yaml.org/">YAML</a> format.<p>
+ * This class is a {@link IDataSet} which accepts data from <a href="http://yaml.org/">YAML</a> format.
  *
  * YAML syntax data set example:
- * <code><pre>
+ * <pre>{@code
 # table_name: row data
 # rowdata: col_name; col_value, ....
 tt_d1:
@@ -47,18 +47,18 @@ tt_d1:
 tt_d2:
     d2_id: 100
     d2_account: "u002"
- * </pre></code>
+ * }</pre>
  *
- * The design principal of This class is based on {@link Yaml}.<p>
+ * <p>The design principal of This class is based on {@link Yaml}.</p>
  *
- * This class uses <a href="http://www.snakeyaml.org/">SnakeYaml</a> to load YAML.<p>
+ * <p>This class uses <a href="http://www.snakeyaml.org/">SnakeYaml</a> to load YAML.</p>
  */
 public class YamlDataSet extends AbstractDataSet {
     private Logger logger = LoggerFactory.getLogger(YamlDataSet.class);
     private ITable[] tablesOfData;
 
     /**
-     * Initalize dataset of YAML with plain string data.<p>
+     * Initalize dataset of YAML with plain string data.
      *
      * @param yaml the content of {@link String} in YAML format
      *
@@ -70,7 +70,7 @@ public class YamlDataSet extends AbstractDataSet {
         init(new Yaml().loadAs(yaml, Map.class));
     }
     /**
-     * Initalize dataset of YAML from {@link InputStream}(BOM is respected and removed).<p>
+     * Initalize dataset of YAML from {@link InputStream}(BOM is respected and removed).
      *
      * @param inputStream the content of string in YAML format
      *
@@ -82,7 +82,7 @@ public class YamlDataSet extends AbstractDataSet {
         init(new Yaml().loadAs(inputStream, Map.class));
     }
     /**
-     * Initalize dataset of YAML from {@link Reader}(BOM must not be present).<p>
+     * Initalize dataset of YAML from {@link Reader}(BOM must not be present).
      *
      * @param reader the content of string in YAML format
      *
